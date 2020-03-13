@@ -1,6 +1,9 @@
+import Social from 'src/components/Social'
+
 const HomePage = () => {
   return (
     <main>
+      <Social />
       <h1>COVID-19 Tracker</h1>
       <p>By @zachlatta + @lachlanjc</p>
       <section>
@@ -19,6 +22,8 @@ const HomePage = () => {
         }
         h1 {
           font-size: 3rem;
+          line-height: 1.125;
+          margin-top: 0;
           margin-bottom: 0;
         }
         h1 + p {
