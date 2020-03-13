@@ -17,6 +17,7 @@ html {
 
 body {
   font-family:
+    'Gotham Rounded SSm A', 'Gotham Rounded SSm B',
     system-ui, -apple-system, BlinkMacSystemFont,
     'Segoe UI', 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
   text-rendering: optimizeLegibility;
@@ -25,6 +26,11 @@ body {
   margin: 0;
   color: #111;
   background-color: #fff;
+}
+
+p {
+  font-family: Sentinel, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
 img {

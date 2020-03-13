@@ -3,6 +3,7 @@ import Social from 'src/components/Social'
 const HomePage = () => {
   return (
     <main>
+      <link rel="stylesheet" href="https://windyhacks.com/fonts.css" />
       <Social />
       <h1>COVID-19 Tracker</h1>
       <p>By @zachlatta + @lachlanjc</p>
@@ -11,7 +12,7 @@ const HomePage = () => {
           <h2>Countries</h2>
         </aside>
         <article>
-          Chart goes here
+          <p>Chart goes here</p>
         </article>
       </section>
       <style jsx>{`
@@ -27,7 +28,7 @@ const HomePage = () => {
           margin-bottom: 0;
         }
         h1 + p {
-          margin-top: 0.5rem;
+          margin-top: 1rem;
           margin-bottom: 3rem;
         }
         section {
@@ -40,7 +41,7 @@ const HomePage = () => {
         article {
           border: 2px dashed #ddd;
           border-radius: 1rem;
-          padding: 2rem;
+          padding: 1rem 2rem;
         }
         @media (min-width: 48em) {
           section {

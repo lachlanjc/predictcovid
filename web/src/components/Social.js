@@ -1,4 +1,5 @@
 import { Facebook, Twitter } from 'react-feather'
+import theme from 'src/theme'
 
 const url = 'https://covid19tracker.now.sh'
 const twitterURL = (text, u = url) =>
@@ -21,6 +22,7 @@ const ShareButton = ({ service, children, ...props }) => (
         display: inline-block;
         text-decoration: none;
         margin-right: 2rem;
+        color: ${theme.colors.blue};
       }
     `}</style>
   </a>
