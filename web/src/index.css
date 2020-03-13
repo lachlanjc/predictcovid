@@ -1,1 +1,79 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
 
+html {
+  font-family: sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  font-family:
+    system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', 'Roboto', 'Helvetica Neue', Helvetica, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  color: #111;
+  background-color: #fff;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+svg {
+  max-height: 100%;
+}
+
+a {
+  color: #07c;
+}
+
+h1, h2, h3,
+h4, h5, h6 {
+  font-weight: 800;
+  line-height: 1.25;
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+
+h1 { font-size: 2rem }
+h2 { font-size: 1.5rem }
+h3 { font-size: 1.25rem }
+h4 { font-size: 1rem }
+h5 { font-size: .875rem }
+h6 { font-size: .75rem }
+
+p, dl, ol, ul, pre, blockquote {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+code,
+pre,
+samp {
+  font-family:
+    'SFMono-Regular', 'Roboto Mono', 'Source Code Pro',
+    Menlo, Consolas, 'Liberation Mono', monospace;
+}
+
+code, samp {
+  font-size: 87.5%;
+  padding: .125em;
+}
+
+pre {
+  font-size: 87.5%;
+  overflow: auto;
+}
+
+main {
+  max-width: 48rem;
+  margin: 2rem auto;
+}

@@ -1,9 +1,9 @@
 const HomePage = () => {
   return (
-    <div>
+    <main>
       <h1>COVID-19 Tracker</h1>
       <p>By @zachlatta + @lachlanjc</p>
-    </div>
+    </main>
   )
 }
 
