@@ -1,3 +1,7 @@
+:root {
+  supported-color-schemes: light dark;
+}
+
 *,
 *:before,
 *:after {
@@ -73,4 +77,19 @@ code, samp {
 pre {
   font-size: 87.5%;
   overflow: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #1e1e1e;
+    color: #fff;
+  }
+
+  input {
+    background-color: #1e1e1e;
+    border-color: #444;
+  }
+  input:focus {
+    border-color: #fff;
+  }
 }
