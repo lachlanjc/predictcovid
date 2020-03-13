@@ -1,6 +1,16 @@
+import { useState } from 'react'
 import Social from 'src/components/Social'
+import Countries from 'src/components/Countries'
+import list from '../../countries.json'
 
 const HomePage = () => {
+  const countryList = {}
+  Object.keys(list).forEach(c => countryList[c] = true)
+  const [countries, setCountries] = useState(countryList)
+  const toggleCountry = ({ target }) =>
+    setCountries(c => ({ ...c, [target.id]: target.checked }))
+  console.log(countries)
+
   return (
     <main>
       <link rel="stylesheet" href="https://windyhacks.com/fonts.css" />
@@ -9,7 +19,7 @@ const HomePage = () => {
       <p>By @zachlatta + @lachlanjc</p>
       <section>
         <aside>
-          <h2>Countries</h2>
+          <Countries list={countries} onToggle={toggleCountry} />
         </aside>
         <article>
           <p>Chart goes here</p>
@@ -34,9 +44,6 @@ const HomePage = () => {
         section {
           display: grid;
           grid-gap: 2rem;
-        }
-        aside h2 {
-          margin-top: 0;
         }
         article {
           border: 2px dashed #ddd;
