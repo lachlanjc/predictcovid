@@ -25,8 +25,6 @@ const extractDataFromChart = function($, chartId) {
 
   const hackedChartJSON = htmlAttempt.replace(/^.*?{/, '{').replace(/\); ?$/, '').replace(/([A-z]+):/g, '"$1":').replace(/'/g, '"')
 
-  console.log(hackedChartJSON)
-
   const json = JSON.parse(hackedChartJSON)
   const xVals = json.xAxis.categories
   const yVals = json.series[0].data
@@ -93,10 +91,81 @@ const scrapeAllCountryData = async function() {
   return data
 }
 
+const dbBS = async function() {
+  const countries = await db.country.findMany()
+
+  console.log(countries)
+
+  for (const country of countries) {
+    console.log('\n###############')
+    console.log('Syncing ' + country.name + ' (' + country.iso + ', ' + country.worldometersSlug + ')')
+    console.log('###############')
+
+    console.log("\nBeginning scraping...")
+    const data = await scrapeCases(country.worldometersSlug)
+    console.log("Done!")
+
+    console.log("\nBeginning sync with DB...")
+    for (const day in data) {
+      console.log("Fetching Day for " + day + " (and creating one if it doesn't exist)")
+      const dbDay = await db.day.upsert({
+        update: {
+          date: new Date(day)
+        },
+        where: {
+          date: new Date(day)
+        },
+        create: {
+          date: new Date(day)
+        }
+      })
+
+      console.log("\nBeginning DailyCount creation for " + day + " (or update if it already exists)...")
+      const foundCounts = await db.dailyCount.findMany({
+        where: {
+          country: { id: country.id },
+          date: { id: dbDay.id },
+        }
+      })
+
+      let dailyCount
+
+      if (foundCounts.length == 0) {
+        console.log("No DailyCount found. Creating one.")
+        dailyCount = await db.dailyCount.create({
+          data: {
+            country: { connect: { id: country.id } },
+            date: { connect: { id: dbDay.id } },
+            totalCases: data[day].totalCases,
+            newCases: data[day].newCases,
+            currentlyInfected: data[day].currentlyInfected,
+            totalDeaths: data[day].totalDeaths,
+            newDeaths: data[day].newDeaths,
+          }
+        })
+      } else if (foundCounts.length == 1) {
+        console.log("DailyCount #" + foundCounts[0].id + " found. Updating it...")
+        dailyCount = await db.dailyCount.update({
+          where: { id: foundCounts[0].id },
+          data: {
+            totalCases: data[day].totalCases,
+            newCases: data[day].newCases,
+            currentlyInfected: data[day].currentlyInfected,
+            totalDeaths: data[day].totalDeaths,
+            newDeaths: data[day].newDeaths,
+          }
+        })
+      } else {
+        console.log("Multiple DailyCounts found. This should never happen. HORRIBLE ERROR.")
+      }
+    }
+  }
+}
+
 export const handler = (event, context, callback) => {
-  scrapeAllCountryData()
-    .then(data => {
-      return callback(null, { status: 200, body: '' + JSON.stringify(data) })
+  dbBS()
+    .then(() => {
+      return callback(null, { status: 200, body: 'Success!' })
     })
     .catch(err => {
       return callback(null, { status: 500, body: "Error! " + err })

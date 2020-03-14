@@ -5,20 +5,66 @@ const dotenv = require('dotenv')
 dotenv.config()
 const db = new PrismaClient()
 
-async function main() {
-  // Seed data is database data that needs to exist for your app to run.
-  // Ideally this file should be idempotent: running it multiple times
-  // will result in the same database state (usually by checking for the
-  // existence of a record before trying to create it). For example:
-  //
-  //   await photon.user.find({ email: admin@redwoodjs.com }).orCreate({
-  //     firstName: 'Admin',
-  //     lastName: 'Istrator',
-  //     email: 'admin@redwoodjs.com',
-  //   })
+const countries = [
+  {
+    iso: 'itl',
+    worldometersSlug: 'italy',
+    name: 'Italy',
+  },
+  {
+    iso: 'chn',
+    worldometersSlug: 'china',
+    name: 'China',
+  },
+  {
+    iso: 'irn',
+    worldometersSlug: 'iran',
+    name: 'Iran',
+  },
+  {
+    iso: 'kor',
+    worldometersSlug: 'south-korea',
+    name: 'South Korea',
+  },
+  {
+    iso: 'esp',
+    worldometersSlug: 'spain',
+    name: 'Spain',
+  },
+  {
+    iso: 'deu',
+    worldometersSlug: 'germany',
+    name: 'Germany',
+  },
+  {
+    iso: 'fra',
+    worldometersSlug: 'france',
+    name: 'France',
+  },
+  {
+    iso: 'usa',
+    worldometersSlug: 'us',
+    name: 'United States',
+  },
+  {
+    iso: 'gbr',
+    worldometersSlug: 'uk',
+    name: 'United Kingdom',
+  }
+]
 
-  console.log('No data to seed. See api/prisma/seeds.js for info.')
+async function asyncForEach(array, callback) {
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array)
+  }
 }
+
+async function main() {
+  await asyncForEach(countries, async (country) => {
+    await db.country.create({ data: country })
+  })
+}
+
 
 main()
   .catch((e) => console.error(e))
