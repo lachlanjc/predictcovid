@@ -1,5 +1,5 @@
-import { BarChart, XAxis, YAxis, Tooltip, Legend, Bar } from 'recharts'
-import { startCase } from 'lodash'
+import { LineChart, XAxis, YAxis, Tooltip, Legend, Bar, CartesianGrid, Line } from 'recharts'
+import { startCase, sortBy } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
 
@@ -12,28 +12,40 @@ const xAxisFormatter = (t) =>
   new Date(t).toLocaleDateString().replace(/\/?2020-?/, '')
 
 const Chart = ({ dailyCounts, enabledCountries, defaultCountry, log }) => {
+  console.log(dailyCounts)
+
+  let days = {}
+
+  dailyCounts.forEach(count => {
+    console.log(count)
+
+    days[count.date.date] = days[count.date.date] || {}
+
+    days[count.date.date][count.country.iso + 'TotalCases'] = count.totalCases
+    days[count.date.date][count.country.iso + 'TotalDeaths'] = count.totalDeaths
+  })
+
+  let readyForChart = []
+
+  for (const day in days) {
+    readyForChart.push({
+      date: day,
+      ...days[day],
+    })
+  }
+
+  readyForChart = sortBy(readyForChart, 'date')
+
   return (
-    <BarChart width={768} height={512} data={dailyCounts}>
-      <XAxis dataKey="date.date" tickFormatter={xAxisFormatter} />
-      <YAxis tickFormatter={yAxisFormatter} scale={log ? 'sqrt' : 'linear'} />
-      <Tooltip
-        separator=": "
-        formatter={(value, name) => [commaNumber(value), startCase(name)]}
-      />
-      <Legend formatter={startCase} />
-      <Bar dataKey="newDeaths" stackId="date.date" fill={theme.colors.red} />
-      <Bar dataKey="newCases" stackId="date.date" fill={theme.colors.cyan} />
-      <Bar
-        dataKey="currentlyInfected"
-        stackId="date.date"
-        fill={theme.colors.blue}
-      />
-      <Bar
-        dataKey="totalCases"
-        stackId="date.date"
-        fill={theme.colors.violet}
-      />
-    </BarChart>
+    <LineChart width={500} height={300} data={readyForChart}>
+      <XAxis/>
+      <YAxis/>
+      <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+      <Line type="monotone" dataKey="chnTotalCases" stroke="#ff0000" />
+      <Line type="monotone" dataKey="itlTotalCases" stroke="#8884d8" />
+      <Line type="monotone" dataKey="usaTotalCases" stroke="#82ca9d" />
+      <Line type="monotone" dataKey="korTotalCases" />
+    </LineChart>
   )
 }
 
