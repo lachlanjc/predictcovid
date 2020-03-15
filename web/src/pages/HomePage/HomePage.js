@@ -2,13 +2,14 @@ import { useState } from 'react'
 import Social from 'src/components/Social'
 import Countries from 'src/components/Countries'
 import Settings from 'src/components/Settings'
+import DailyCountsCell from 'src/components/DailyCountsCell'
 import theme from 'src/theme'
 import list from '../../countries.json'
 
 const HomePage = () => {
   const [log, setLog] = useState(false)
   const countryList = {}
-  Object.keys(list).forEach(c => countryList[c] = true)
+  Object.keys(list).forEach((c) => (countryList[c] = true))
   const [countries, setCountries] = useState(countryList)
   const toggleCountry = ({ target }) =>
     setCountries((c) => ({ ...c, [target.id]: target.checked }))
