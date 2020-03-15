@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import Spinner from 'respin'
 import Settings from 'src/components/Settings'
-import Stat from 'src/components/Stat'
+import Stat from 'src/components/StatsCell/Stat'
+import StatChart from 'src/components/StatsCell/StatChart'
 import commaNumber from 'comma-number'
 import { map, find, last, trim } from 'lodash'
 
@@ -11,11 +12,9 @@ export const QUERY = gql`
       iso
       name
       dailyCounts {
-        totalCases
-        newCases
         currentlyInfected
+        totalCases
         totalDeaths
-        newDeaths
       }
     }
   }
@@ -60,16 +59,11 @@ export const Success = ({ countries = [] }) => {
   }, [])
 
   // Calculate stats
-  const [totalCases, setTotalCases] = useState(0)
-  const [totalDeaths, setTotalDeaths] = useState(0)
-  const [currentlyInfected, setCurrentlyInfected] = useState(0)
+  const [counts, setCounts] = useState([])
+  const stat = (key) => commaNumber(last(map(counts, key).sort()))
+  const statChart = (key) => map(counts, key)
   useEffect(() => {
-    const counts = find(countries, ['iso', country])?.dailyCounts
-    const stat = (key) => last(map(counts, key).sort())
-
-    setCurrentlyInfected(stat('currentlyInfected'))
-    setTotalCases(stat('totalCases'))
-    setTotalDeaths(stat('totalDeaths'))
+    setCounts(find(countries, ['iso', country])?.dailyCounts)
   }, [country])
 
   return (
@@ -86,18 +80,33 @@ export const Success = ({ countries = [] }) => {
         </select>
       </Settings>
       <article>
-        <Stat
-          value={commaNumber(currentlyInfected)}
-          label="Currently infected"
-        />
-        <Stat value={commaNumber(totalCases)} label="Total cases" />
-        <Stat value={commaNumber(totalDeaths)} label="Total deaths" />
+        <section>
+          <Stat value={stat('currentlyInfected')} label="Currently infected" />
+          <StatChart data={counts} dataKey="currentlyInfected" color="green" />
+        </section>
+        <section>
+          <Stat value={stat('totalCases')} label="Total cases" />
+          <StatChart data={counts} dataKey="totalCases" color="orange" />
+        </section>
+        <section>
+          <Stat value={stat('totalDeaths')} label="Total deaths" />
+          <StatChart data={counts} dataKey="totalDeaths" color="red" />
+        </section>
       </article>
       <style jsx>{`
         article {
           display: grid;
           grid-gap: 1rem;
           grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        }
+        article section {
+          position: relative;
+        }
+        article section :global(.recharts-responsive-container) {
+          position: absolute !important;
+          bottom: 0;
+          left: 0;
+          right: 0;
         }
       `}</style>
     </>
