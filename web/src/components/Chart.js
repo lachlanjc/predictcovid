@@ -7,9 +7,57 @@ import {
   CartesianGrid,
   Line
 } from 'recharts'
-import { sortBy } from 'lodash'
+import { startCase, sortBy, groupBy, find, reverse } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
+
+const daysBetween = (date1, date2) => {
+  const oneDay = 24 * 60 * 60 * 1000
+
+  return Math.round((date1.getTime() - date2.getTime()) / (oneDay))
+}
+
+const calculateDayOffsets = (sortedDailyCounts) => {
+  // Goal: Given country, calculate the last day it intersected with italy
+  const countryBenchmark = 'itl'
+
+  const countryCounts = groupBy(sortedDailyCounts, count => count.country.iso)
+
+  const benchmarkCounts = countryCounts[countryBenchmark]
+  const revBenchmarkCounts = reverse(benchmarkCounts)
+
+  let countries = {}
+
+  revBenchmarkCounts.forEach((count, i) => {
+    if (i == revBenchmarkCounts.length-1) {
+      return
+    }
+
+    const currentCount = count
+    const previousCount = revBenchmarkCounts[i+1]
+
+    for (const country in countryCounts) {
+      const counts = countryCounts[country]
+
+      counts.forEach(count => {
+        if (countries[country]) { return }
+
+        if (count.totalCases < currentCount.totalCases &&
+          count.totalCases > previousCount.totalCases) {
+          //console.log("MATCH FOUND")
+          //console.log("count", count)
+          //console.log("currentCount", currentCount)
+          //console.log("previousCount", previousCount)
+          //console.log("MATCH FOUND - DONE FOR", country)
+
+          countries[country] = daysBetween(new Date(currentCount.date.date), new Date(count.date.date))
+        }
+      })
+    }
+  })
+
+  return countries
+}
 
 const yAxisFormatter = (i) =>
   i
@@ -25,11 +73,16 @@ const Chart = ({
   defaultCountry,
   log
 }) => {
+  // sort dailyCounts for all later operations
+  const sortedDailyCounts = sortBy(dailyCounts, count => count.date.date)
+
+  const offsets = calculateDayOffsets(sortedDailyCounts)
+  console.log(offsets)
+
+  // Assemble chart display
   let days = {}
 
-  dailyCounts.forEach((count) => {
-    console.log(count)
-
+  sortedDailyCounts.forEach(count => {
     days[count.date.date] = days[count.date.date] || {}
 
     days[count.date.date][count.country.iso + 'TotalCases'] = count.totalCases
