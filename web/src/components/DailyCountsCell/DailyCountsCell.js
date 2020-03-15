@@ -3,6 +3,7 @@ import Chart from 'src/components/Chart'
 export const QUERY = gql`
   query {
     countries {
+      id
       iso
       name
     }
@@ -13,6 +14,15 @@ export const QUERY = gql`
       currentlyInfected
       totalDeaths
       newDeaths
+      country {
+        id
+        iso
+        name
+      }
+      date {
+        id
+        date
+      }
     }
   }
 `
@@ -36,6 +46,8 @@ export const Success = ({
   defaultCountry = 'itl',
   log = false
 }) => {
+  console.log(dailyCounts)
+
   return (
     <>
       <p>Plotting against: {defaultCountry}</p>
