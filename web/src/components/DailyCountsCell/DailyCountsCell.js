@@ -1,5 +1,4 @@
 import Chart from 'src/components/Chart'
-import { find } from 'lodash'
 
 export const QUERY = gql`
   query {

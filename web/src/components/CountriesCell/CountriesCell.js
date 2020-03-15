@@ -1,4 +1,5 @@
-import { orderBy, remove, concat } from 'lodash'
+import { useEffect } from 'react'
+import { map, orderBy, remove, concat } from 'lodash'
 
 export const QUERY = gql`
   query {
@@ -25,12 +26,18 @@ export const Success = ({
   defaultCountry,
   setDefaultCountry
 }) => {
-  const changeDefault = ({ target }) => setDefaultCountry(target.value)
+  const changeDefault = ({ target: { value } }) => setDefaultCountry(value)
   const toggleEnabled = ({ target: { id } }) =>
-  setEnabledCountries((c) => c.includes(id) ? remove(c, id) : concat(c, id))
-  const enabledTooltip = iso => `${iso.toUpperCase()}: ${
-    enabledCountries.includes(iso) ? 'Enabled' : 'Disabled'
-  }`
+    setEnabledCountries((c) => (c.includes(id) ? remove(c, id) : concat(c, id)))
+  useEffect(() => {
+    if (defaultCountry === 'itl' && enabledCountries.length === 0) {
+      setEnabledCountries(map(countries, 'iso'))
+    }
+  }, [])
+  const enabledTooltip = (iso) =>
+    `${iso.toUpperCase()}: ${
+      enabledCountries.includes(iso) ? 'Enabled' : 'Disabled'
+    }`
 
   return (
     <>
