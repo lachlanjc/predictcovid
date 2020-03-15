@@ -5,11 +5,12 @@ import Settings from 'src/components/Settings'
 import list from '../../countries.json'
 
 const HomePage = () => {
+  const [log, setLog] = useState(false)
   const countryList = {}
   Object.keys(list).forEach(c => countryList[c] = true)
   const [countries, setCountries] = useState(countryList)
   const toggleCountry = ({ target }) =>
-    setCountries(c => ({ ...c, [target.id]: target.checked }))
+    setCountries((c) => ({ ...c, [target.id]: target.checked }))
   console.log(countries)
 
   return (
@@ -20,6 +21,15 @@ const HomePage = () => {
       <p>By @zachlatta + @lachlanjc</p>
       <section>
         <Settings>
+          <label>
+            <input
+              type="checkbox"
+              name="log"
+              checked={log}
+              onChange={(e) => setLog(e.target.checked)}
+            />
+            Log scale
+          </label>
           <Countries list={countries} onToggle={toggleCountry} />
         </Settings>
         <article>
