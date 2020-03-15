@@ -9,7 +9,6 @@ const Stat = ({ value, label, unit, ...props }) => (
     <style jsx>{`
       .stat {
         text-align: center;
-        margin-top: 1rem;
       }
       .stat__value {
         display: block;

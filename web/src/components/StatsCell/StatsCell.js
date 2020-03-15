@@ -60,8 +60,7 @@ export const Success = ({ countries = [] }) => {
 
   // Calculate stats
   const [counts, setCounts] = useState([])
-  const stat = (key) => commaNumber(last(map(counts, key).sort()))
-  const statChart = (key) => map(counts, key)
+  const stat = (key) => commaNumber(last(map(counts, key)))
   useEffect(() => {
     setCounts(find(countries, ['iso', country])?.dailyCounts)
   }, [country])
