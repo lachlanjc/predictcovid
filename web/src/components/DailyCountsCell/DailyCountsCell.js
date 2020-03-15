@@ -1,4 +1,5 @@
 import Chart from 'src/components/Chart'
+import { find } from 'lodash'
 
 export const QUERY = gql`
   query {
@@ -50,14 +51,26 @@ export const Success = ({
 
   return (
     <>
-      <p>Plotting against: {defaultCountry}</p>
-      <p>Current countries: {enabledCountries.join(', ')}</p>
       <Chart
         dailyCounts={dailyCounts}
         defaultCountry={defaultCountry}
         enabledCountries={enabledCountries}
         log={log}
       />
+      <p>Plotting against: {find(countries, ['iso', defaultCountry]).name}</p>
+      <p>
+        Current countries:{' '}
+        {enabledCountries
+          .map((c) => find(countries, ['iso', c]).name)
+          .join(', ')}
+      </p>
+      <style jsx>{`
+        p {
+          text-align: center;
+          max-width: 24rem;
+          margin: 1rem auto;
+        }
+      `}</style>
     </>
   )
 }
