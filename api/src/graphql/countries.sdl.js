@@ -5,7 +5,7 @@ export const schema = gql`
     worldometersSlug: String!
     name: String!
     createdAt: DateTime!
-    dailyCounts: DailyCount
+    dailyCounts: [DailyCount]
   }
 
   type Query {
