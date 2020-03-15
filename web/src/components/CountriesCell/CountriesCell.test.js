@@ -1,8 +1,8 @@
 import { render, cleanup } from '@testing-library/react'
 
-import { Loading, Empty, Failure, Success } from './DailyCountsCell'
+import { Loading, Empty, Failure, Success } from './CountriesCell'
 
-describe('DailyCountsCell', () => {
+describe('CountriesCell', () => {
   afterEach(() => {
     cleanup()
   })
@@ -24,7 +24,6 @@ describe('DailyCountsCell', () => {
   it('Success renders successfully', () => {
     expect(() => {
       Success({
-        dailyCounts: [{ totalCases: 3 }, { totalCases: 4 }],
         countries: [
           { iso: 'itl', name: 'Italy' },
           { iso: 'chn', name: 'China' }
