@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Social from 'src/components/Social'
 import Countries from 'src/components/Countries'
+import Settings from 'src/components/Settings'
 import list from '../../countries.json'
 
 const HomePage = () => {
@@ -18,9 +19,9 @@ const HomePage = () => {
       <h1>COVID-19 Tracker</h1>
       <p>By @zachlatta + @lachlanjc</p>
       <section>
-        <aside>
+        <Settings>
           <Countries list={countries} onToggle={toggleCountry} />
-        </aside>
+        </Settings>
         <article>
           <p>Chart goes here</p>
         </article>
