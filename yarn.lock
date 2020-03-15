@@ -9276,6 +9276,11 @@ resolve@^1.10.0, resolve@^1.11.0, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.1
   dependencies:
     path-parse "^1.0.6"
 
+respin@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/respin/-/respin-1.0.1.tgz#329bdaeb1749bc47dab76b41173a98bb53541d2e"
+  integrity sha1-Mpva6xdJvEfat2tBFzqYu1NUHS4=
+
 responselike@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/responselike/-/responselike-1.0.2.tgz#918720ef3b631c5642be068f15ade5a46f4ba1e7"

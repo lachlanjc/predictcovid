@@ -3,6 +3,7 @@ import Social from 'src/components/Social'
 import Settings from 'src/components/Settings'
 import CountriesCell from 'src/components/CountriesCell'
 import DailyCountsCell from 'src/components/DailyCountsCell'
+import StatsCell from 'src/components/StatsCell'
 import theme from 'src/theme'
 
 const HomePage = () => {
@@ -42,6 +43,9 @@ const HomePage = () => {
           />
         </article>
       </section>
+      <section>
+        <StatsCell />
+      </section>
       <footer>
         <p>
           By <a href="https://zachlatta.com">@zachlatta</a> +{' '}
@@ -71,8 +75,7 @@ const HomePage = () => {
         section {
           display: grid;
           grid-gap: 2rem;
-        }
-        article {
+          margin-bottom: 3rem;
         }
         @media (min-width: 48em) {
           section {

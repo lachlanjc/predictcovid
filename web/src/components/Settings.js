@@ -5,6 +5,9 @@ const Settings = ({ children }) => (
     {children}
     <style jsx global>{`
       aside h2 {
+        margin-top: 0;
+      }
+      aside select + h2 {
         margin-top: 1.5rem;
       }
       aside label {
