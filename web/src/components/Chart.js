@@ -17,9 +17,8 @@ const daysBetween = (date1, date2) => {
   return Math.round((date1.getTime() - date2.getTime()) / (oneDay))
 }
 
-const calculateDayOffsets = (sortedDailyCounts) => {
-  // Goal: Given country, calculate the last day it intersected with italy
-  const countryBenchmark = 'itl'
+const calculateDayOffsets = (sortedDailyCounts, benchmarkCountryISO) => {
+  const countryBenchmark = benchmarkCountryISO
 
   const countryCounts = groupBy(sortedDailyCounts, count => count.country.iso)
 
@@ -76,7 +75,7 @@ const Chart = ({
   // sort dailyCounts for all later operations
   const sortedDailyCounts = sortBy(dailyCounts, count => count.date.date)
 
-  const offsets = calculateDayOffsets(sortedDailyCounts)
+  const offsets = calculateDayOffsets(sortedDailyCounts, 'itl')
   console.log(offsets)
 
   // Assemble chart display
