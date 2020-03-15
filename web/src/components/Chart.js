@@ -7,8 +7,11 @@ const Chart = ({ dailyCounts, countries }) => {
   return (
     <BarChart width={512} height={256} data={dailyCounts}>
       <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip separator=": " formatter={(value, name) => [commaNumber(value), startCase(name)]} />
+      <YAxis tickFormatter={(i) => i.toString().replace(/0{3}$/, 'k')} />
+      <Tooltip
+        separator=": "
+        formatter={(value, name) => [commaNumber(value), startCase(name)]}
+      />
       <Legend formatter={startCase} />
       <Bar dataKey="newCases" fill={theme.colors.cyan} />
       <Bar dataKey="newDeaths" fill={theme.colors.red} />
