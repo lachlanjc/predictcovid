@@ -3,7 +3,7 @@ import { startCase } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
 
-const Chart = ({ dailyCounts, countries, log }) => {
+const Chart = ({ dailyCounts, enabledCountries, defaultCountry, log }) => {
   return (
     <BarChart width={768} height={512} data={dailyCounts}>
       <XAxis dataKey="name" />

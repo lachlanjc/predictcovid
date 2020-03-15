@@ -1,22 +1,18 @@
 import { useState } from 'react'
 import Social from 'src/components/Social'
-import Countries from 'src/components/Countries'
 import Settings from 'src/components/Settings'
+import CountriesCell from 'src/components/CountriesCell'
 import DailyCountsCell from 'src/components/DailyCountsCell'
 import theme from 'src/theme'
-import list from '../../countries.json'
 
 const HomePage = () => {
   const [log, setLog] = useState(false)
-  const countryList = {}
-  Object.keys(list).forEach((c) => (countryList[c] = true))
-  const [countries, setCountries] = useState(countryList)
-  const toggleCountry = ({ target }) =>
-    setCountries((c) => ({ ...c, [target.id]: target.checked }))
+  const [defaultCountry, setDefaultCountry] = useState('itl')
+  const [enabledCountries, setEnabledCountries] = useState([])
 
   return (
     <main>
-      <link rel="stylesheet" href="https://windyhacks.com/fonts.css" />
+      {/* <link rel="stylesheet" href="https://windyhacks.com/fonts.css" /> */}
       <Social />
       <h1>COVID-19 Country Tracker</h1>
       <p>Track all the countries’ pandemic progress</p>
@@ -31,11 +27,17 @@ const HomePage = () => {
             />
             <strike>Log</strike>Square root scale
           </label>
-          <Countries list={countries} onToggle={toggleCountry} />
+          <CountriesCell
+            enabledCountries={enabledCountries}
+            setEnabledCountries={setEnabledCountries}
+            defaultCountry={defaultCountry}
+            setDefaultCountry={setDefaultCountry}
+          />
         </Settings>
         <article>
           <DailyCountsCell
-            countries={Object.keys(countries).filter((c) => countries[c])}
+            defaultCountry={defaultCountry}
+            enabledCountries={enabledCountries}
             log={log}
           />
         </article>

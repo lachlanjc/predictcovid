@@ -5,10 +5,7 @@ const Settings = ({ children }) => (
     {children}
     <style jsx global>{`
       aside h2 {
-        margin-top: 0;
-      }
-      aside label + h2 {
-        margin-top: 1rem;
+        margin-top: 1.5rem;
       }
       aside label {
         font-family: ${theme.fonts.serif};
@@ -18,6 +15,9 @@ const Settings = ({ children }) => (
       }
       aside input {
         margin-right: 0.5rem;
+      }
+      aside select {
+        display: block;
       }
     `}</style>
   </aside>
