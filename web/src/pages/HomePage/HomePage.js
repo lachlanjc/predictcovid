@@ -29,7 +29,7 @@ const HomePage = () => {
               checked={log}
               onChange={(e) => setLog(e.target.checked)}
             />
-            Log scale
+            <strike>Log</strike>Square root scale
           </label>
           <Countries list={countries} onToggle={toggleCountry} />
         </Settings>

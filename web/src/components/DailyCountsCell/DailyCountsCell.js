@@ -19,11 +19,11 @@ export const Empty = () => <div>Empty</div>
 
 export const Failure = ({ error }) => <div>Error: <pre>{error.message}</pre></div>
 
-export const Success = ({ dailyCounts, countries = [] }) => {
+export const Success = ({ dailyCounts, countries = [], log = false }) => {
   return (
     <>
-      <pre>{JSON.stringify(countries)}</pre>
-      <Chart dailyCounts={dailyCounts} countries={countries} />
+      <p>Current countries: {countries.join(', ')}</p>
+      <Chart dailyCounts={dailyCounts} countries={countries} log={log} />
     </>
   )
 }
