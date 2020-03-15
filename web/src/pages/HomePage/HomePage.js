@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Social from 'src/components/Social'
 import Countries from 'src/components/Countries'
 import Settings from 'src/components/Settings'
+import theme from 'src/theme'
 import list from '../../countries.json'
 
 const HomePage = () => {
@@ -11,14 +12,13 @@ const HomePage = () => {
   const [countries, setCountries] = useState(countryList)
   const toggleCountry = ({ target }) =>
     setCountries((c) => ({ ...c, [target.id]: target.checked }))
-  console.log(countries)
 
   return (
     <main>
       <link rel="stylesheet" href="https://windyhacks.com/fonts.css" />
       <Social />
       <h1>COVID-19 Tracker</h1>
-      <p>By @zachlatta + @lachlanjc</p>
+      <p>Track all the countries’ pandemic progress</p>
       <section>
         <Settings>
           <label>
@@ -33,9 +33,19 @@ const HomePage = () => {
           <Countries list={countries} onToggle={toggleCountry} />
         </Settings>
         <article>
-          <p>Chart goes here</p>
+          <DailyCountsCell
+            countries={Object.keys(countries).filter((c) => countries[c])}
+            log={log}
+          />
         </article>
       </section>
+      <footer>
+        <p>
+          By <a href="https://zachlatta.com">@zachlatta</a> +{' '}
+          <a href="https://lachlanjc.me">@lachlanjc</a>, 2020.
+        </p>
+        <p><a href="https://github.com/lachlanjc/covid19">Open source!</a></p>
+      </footer>
       <style jsx>{`
         main {
           max-width: 64rem;
@@ -65,6 +75,18 @@ const HomePage = () => {
           section {
             grid-template-columns: 1fr 2fr;
           }
+        }
+        footer {
+          padding: 2rem 1rem;
+          text-align: center;
+        }
+        footer a {
+          color: ${theme.colors.blue};
+          text-decoration-line: underline;
+          text-decoration-color: initial;
+          text-decoration: underline;
+          text-underline-position: under;
+          text-decoration-style: wavy;
         }
       `}</style>
     </main>
