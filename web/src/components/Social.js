@@ -2,10 +2,9 @@ import { Facebook, Twitter } from 'react-feather'
 import theme from 'src/theme'
 
 const url = 'https://covid19tracker.now.sh'
+const esc = (t) => t.split(' ').join('%20')
 const twitterURL = (text, u = url) =>
-  `https://twitter.com/intent/tweet?text=${text
-    .split(' ')
-    .join('%20')}&url=${u}`
+  `https://twitter.com/intent/tweet?text=${esc(text)}&url=${u}`
 const facebookURL = (u = url) =>
   `https://www.facebook.com/sharer/sharer.php?u=${u}`
 
@@ -28,10 +27,10 @@ const ShareButton = ({ service, children, ...props }) => (
   </a>
 )
 
-export default () => (
+const Social = () => (
   <section>
     <ShareButton
-      href={twitterURL('Interactive COVID-19 tracker', url)}
+      href={twitterURL('Interactive COVID-19 country tracker', url)}
       service="Twitter"
     >
       <Twitter />
@@ -54,3 +53,5 @@ export default () => (
     `}</style>
   </section>
 )
+
+export default Social

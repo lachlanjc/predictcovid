@@ -18,7 +18,7 @@ const HomePage = () => {
     <main>
       <link rel="stylesheet" href="https://windyhacks.com/fonts.css" />
       <Social />
-      <h1>COVID-19 Tracker</h1>
+      <h1>COVID-19 Country Tracker</h1>
       <p>Track all the countries’ pandemic progress</p>
       <section>
         <Settings>
@@ -45,7 +45,9 @@ const HomePage = () => {
           By <a href="https://zachlatta.com">@zachlatta</a> +{' '}
           <a href="https://lachlanjc.me">@lachlanjc</a>, 2020.
         </p>
-        <p><a href="https://github.com/lachlanjc/covid19">Open source!</a></p>
+        <p>
+          <a href="https://github.com/lachlanjc/covid19">Open source!</a>
+        </p>
       </footer>
       <style jsx>{`
         main {
@@ -56,6 +58,7 @@ const HomePage = () => {
         h1 {
           font-size: 3rem;
           line-height: 1.125;
+          letter-spacing: -0.02em;
           margin-top: 0;
           margin-bottom: 0;
         }
