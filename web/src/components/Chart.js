@@ -7,9 +7,9 @@ import {
   CartesianGrid,
   Line
 } from 'recharts'
-import { find, get, sortBy } from 'lodash'
+import { sortBy } from 'lodash'
 import commaNumber from 'comma-number'
-// import theme from 'src/theme'
+import theme from 'src/theme'
 
 const yAxisFormatter = (i) =>
   i
@@ -59,10 +59,10 @@ const Chart = ({
         formatter={countryFromKey}
       />
       <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
-      <Line type="monotone" dataKey="chnTotalCases" stroke="#ff0000" />
-      <Line type="monotone" dataKey="itlTotalCases" stroke="#8884d8" />
-      <Line type="monotone" dataKey="usaTotalCases" stroke="#82ca9d" />
-      <Line type="monotone" dataKey="korTotalCases" />
+      <Line type="monotone" dataKey="chnTotalCases" stroke={theme.colors.red} activeDot={{ r: 8 }} />
+      <Line type="monotone" dataKey="itlTotalCases" stroke={theme.colors.green} activeDot={{ r: 8 }} />
+      <Line type="monotone" dataKey="usaTotalCases" stroke={theme.colors.blue} activeDot={{ r: 8 }} />
+      <Line type="monotone" dataKey="korTotalCases" stroke={theme.colors.orange} activeDot={{ r: 8 }} />
     </LineChart>
   )
 }
