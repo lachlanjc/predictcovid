@@ -1,3 +1,5 @@
+import Chart from 'src/components/Chart'
+
 export const QUERY = gql`
   query {
     dailyCounts {
@@ -21,7 +23,7 @@ export const Success = ({ dailyCounts, countries = [] }) => {
   return (
     <>
       <pre>{JSON.stringify(countries)}</pre>
-      {dailyCounts.map(count => <pre key={count.id}>{JSON.stringify(count)}</pre>)}
+      <Chart dailyCounts={dailyCounts} countries={countries} />
     </>
   )
 }

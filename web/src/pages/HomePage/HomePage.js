@@ -68,9 +68,6 @@ const HomePage = () => {
           grid-gap: 2rem;
         }
         article {
-          border: 2px dashed #ddd;
-          border-radius: 1rem;
-          padding: 1rem 2rem;
         }
         @media (min-width: 48em) {
           section {
