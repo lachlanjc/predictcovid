@@ -1,22 +1,33 @@
-import { LineChart, XAxis, YAxis, Tooltip, Legend, Bar, CartesianGrid, Line } from 'recharts'
-import { startCase, sortBy } from 'lodash'
+import {
+  LineChart,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  CartesianGrid,
+  Line
+} from 'recharts'
+import { find, get, sortBy } from 'lodash'
 import commaNumber from 'comma-number'
-import theme from 'src/theme'
+// import theme from 'src/theme'
 
 const yAxisFormatter = (i) =>
   i
     .toString()
     .replace(/0{6}$/, 'M')
     .replace(/0{3}$/, 'k')
-const xAxisFormatter = (t) =>
-  new Date(t).toLocaleDateString().replace(/\/?2020-?/, '')
+const countryFromKey = key => key.toString().slice(0, 3).toUpperCase()
 
-const Chart = ({ dailyCounts, enabledCountries, defaultCountry, log }) => {
-  console.log(dailyCounts)
-
+const Chart = ({
+  dailyCounts = [],
+  countries = [],
+  enabledCountries,
+  defaultCountry,
+  log
+}) => {
   let days = {}
 
-  dailyCounts.forEach(count => {
+  dailyCounts.forEach((count) => {
     console.log(count)
 
     days[count.date.date] = days[count.date.date] || {}
@@ -30,17 +41,24 @@ const Chart = ({ dailyCounts, enabledCountries, defaultCountry, log }) => {
   for (const day in days) {
     readyForChart.push({
       date: day,
-      ...days[day],
+      ...days[day]
     })
   }
 
   readyForChart = sortBy(readyForChart, 'date')
 
   return (
-    <LineChart width={500} height={300} data={readyForChart}>
-      <XAxis/>
-      <YAxis/>
-      <CartesianGrid stroke="#eee" strokeDasharray="5 5"/>
+    <LineChart width={768} height={512} data={readyForChart}>
+      <XAxis />
+      <YAxis tickFormatter={yAxisFormatter} scale={log ? 'sqrt' : 'linear'} />
+      <Tooltip
+        separator=": "
+        formatter={(value, key) => [commaNumber(value), countryFromKey(key)]}
+      />
+      <Legend
+        formatter={countryFromKey}
+      />
+      <CartesianGrid stroke="#eee" strokeDasharray="5 5" />
       <Line type="monotone" dataKey="chnTotalCases" stroke="#ff0000" />
       <Line type="monotone" dataKey="itlTotalCases" stroke="#8884d8" />
       <Line type="monotone" dataKey="usaTotalCases" stroke="#82ca9d" />
