@@ -7,7 +7,7 @@ import StatsCell from 'src/components/StatsCell'
 import theme from 'src/theme'
 
 const HomePage = () => {
-  const [log, setLog] = useState(false)
+  // const [log, setLog] = useState(false)
   const [defaultCountry, setDefaultCountry] = useState('itl')
   const [enabledCountries, setEnabledCountries] = useState([])
 
@@ -19,7 +19,7 @@ const HomePage = () => {
       <p>Track all the countries’ pandemic progress</p>
       <section>
         <Settings>
-          <label>
+          {/* <label>
             <input
               type="checkbox"
               name="log"
@@ -27,7 +27,7 @@ const HomePage = () => {
               onChange={(e) => setLog(e.target.checked)}
             />
             <strike>Log</strike>Square root scale
-          </label>
+          </label> */}
           <CountriesCell
             enabledCountries={enabledCountries}
             setEnabledCountries={setEnabledCountries}
@@ -39,7 +39,6 @@ const HomePage = () => {
           <DailyCountsCell
             defaultCountry={defaultCountry}
             enabledCountries={enabledCountries}
-            log={log}
           />
         </article>
       </section>
