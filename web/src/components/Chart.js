@@ -148,7 +148,7 @@ const Chart = ({
         margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
       >
         <XAxis dataKey="daysBehind" >
-          <Label value={`Days behind / ahead of ${countryFromKey(defaultCountry, countries)} as of ${new Date(maxBenchmarkDate).toISOString().substring(0,10)}`} position="insideBottom" />
+          <Label value={`Days behind / ahead of ${countryFromKey(defaultCountry, countries)} as of ${new Date(maxBenchmarkDate).toISOString().substring(0,10)} (updated daily)`} position="insideBottom" />
         </XAxis>
         <YAxis tickFormatter={yAxisFormatter} />
         <Tooltip
