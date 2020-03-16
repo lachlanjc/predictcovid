@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { map, orderBy, remove, concat } from 'lodash'
+import { orderBy, filter, concat } from 'lodash'
 import Spinner from 'respin'
 import theme from 'src/theme'
 
@@ -40,7 +39,9 @@ export const Success = ({
   const changeDefault = ({ target: { value } }) => setDefaultCountry(value)
   const toggleEnabled = ({ target: { id } }) => {
     console.log(countries, id, countries.includes(id))
-    setEnabledCountries((c) => (c.includes(id) ? remove(c, id) : concat(c, id)))
+    setEnabledCountries((c) =>
+      c.includes(id) ? filter(c, (cc) => cc !== id) : concat(c, id)
+    )
   }
   const enabledTooltip = (iso) =>
     `${iso.toUpperCase()}: ${

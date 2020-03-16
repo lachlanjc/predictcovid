@@ -68,24 +68,11 @@ export const Success = ({
   defaultCountry = 'itl'
   // log = false
 }) => (
-  <>
-    <Chart
-      dailyCounts={dailyCounts}
-      defaultCountry={defaultCountry}
-      enabledCountries={enabledCountries}
-      countries={countries}
-      // log={log}
-    />
-    <p>
-      Current countries:{' '}
-      {enabledCountries.map((c) => find(countries, ['iso', c]).name).join(', ')}
-    </p>
-    <style jsx>{`
-      p {
-        text-align: center;
-        max-width: 32rem;
-        margin: 1rem auto;
-      }
-    `}</style>
-  </>
+  <Chart
+    dailyCounts={dailyCounts}
+    defaultCountry={defaultCountry}
+    enabledCountries={enabledCountries}
+    countries={countries}
+    // log={log}
+  />
 )
