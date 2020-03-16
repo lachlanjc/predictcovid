@@ -5,7 +5,8 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  Line
+  Line,
+  Label
 } from 'recharts'
 import { orderBy, groupBy, reverse, find } from 'lodash'
 import commaNumber from 'comma-number'
@@ -109,6 +110,22 @@ const Chart = ({
     days[count.date.date][`${count.country.iso}TotalDeaths`] = count.totalDeaths
   })
 
+  // Calculate X axis numbers to show how many days ahead / behind a country is
+  let xAxis = []
+
+  const countryCounts = groupBy(sortedDailyCounts, 'country.iso')
+  // Highest date in benchmark country
+  //
+  const maxBenchmarkDate = countryCounts[defaultCountry][countryCounts[defaultCountry].length - 1].date.date
+
+  for (const day in days) {
+    const daysBehind = daysBetween(new Date(day), new Date(maxBenchmarkDate))
+
+    days[day]['daysBehind'] = daysBehind
+  }
+
+  const totalDaysInChart = Object.keys(days).length
+
   // Prepare chart data
   const [chartData, setChartData] = useState([])
   useEffect(() => {
@@ -130,7 +147,9 @@ const Chart = ({
         data={chartData}
         margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
       >
-        <XAxis />
+        <XAxis dataKey="daysBehind" >
+          <Label value={`Days behind / ahead of ${countryFromKey(defaultCountry, countries)} as of ${new Date(maxBenchmarkDate).toISOString().substring(0,10)}`} position="insideBottom" />
+        </XAxis>
         <YAxis tickFormatter={yAxisFormatter} />
         <Tooltip
           separator=": "
