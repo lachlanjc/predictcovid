@@ -69,7 +69,7 @@ const HomePage = () => {
       </footer>
       <style jsx>{`
         header {
-          padding-top: 3rem !important;
+          padding-top: 2rem !important;
         }
         h1 {
           color: ${theme.colors.red};
@@ -110,6 +110,9 @@ const HomePage = () => {
           }
         }
         @media (min-width: 36em) {
+          header {
+            padding-top: 3rem !important;
+          }
           section {
             grid-template-columns: 1fr 2fr;
           }
