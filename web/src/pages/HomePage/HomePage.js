@@ -30,7 +30,7 @@ const HomePage = () => {
           <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
         </p>
       </header>
-      <section className="container">
+      <section className="container swap">
         <Settings>
           {/* <label>
             <input
@@ -101,7 +101,15 @@ const HomePage = () => {
           display: grid;
           grid-gap: 2rem;
         }
-        @media (min-width: 48em) {
+        @media (max-width: 32em) {
+          section.swap article {
+            grid-row: 1;
+          }
+          section.swap aside {
+            grid-row: 2;
+          }
+        }
+        @media (min-width: 36em) {
           section {
             grid-template-columns: 1fr 2fr;
           }
