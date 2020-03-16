@@ -36,14 +36,17 @@ export const Success = ({
   defaultCountry,
   setDefaultCountry
 }) => {
-  const changeDefault = ({ target: { value } }) =>
+  const changeDefault = ({ target: { value } }) => {
     setDefaultCountry([value, find(countries, ['iso', value]).name])
-  const toggleEnabled = ({ target: { id } }) => {
-    console.log(countries, id, countries.includes(id))
+    // Enable on graph if it’s not alreadythere
+    if (!enabledCountries.includes(value)) {
+      setEnabledCountries((c) => concat(c, value))
+    }
+  }
+  const toggleEnabled = ({ target: { id } }) =>
     setEnabledCountries((c) =>
       c.includes(id) ? filter(c, (cc) => cc !== id) : concat(c, id)
     )
-  }
   const enabledTooltip = (iso) =>
     `${iso.toUpperCase()}: ${
       enabledCountries.includes(iso) ? 'Enabled' : 'Disabled'
