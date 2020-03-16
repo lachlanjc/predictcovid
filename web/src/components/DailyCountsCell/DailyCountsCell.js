@@ -49,7 +49,7 @@ export const Success = ({
 }) => (
   <>
     <Chart
-      dailyCounts={filteredCounts}
+      dailyCounts={dailyCounts}
       defaultCountry={defaultCountry}
       enabledCountries={enabledCountries}
       countries={countries}

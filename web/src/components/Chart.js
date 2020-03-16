@@ -71,7 +71,7 @@ const Chart = ({
   dailyCounts = [],
   countries = [],
   enabledCountries,
-  defaultCountry,
+  defaultCountry
   // log
 }) => {
   // sort dailyCounts for all later operations
@@ -132,10 +132,13 @@ const Chart = ({
         <YAxis tickFormatter={yAxisFormatter} />
         <Tooltip
           separator=": "
-          formatter={(value, key) => [commaNumber(value), countryFromKey(key, countries)]}
+          formatter={(value, key) => [
+            commaNumber(value),
+            countryFromKey(key, countries)
+          ]}
         />
         {console.log('Countries', countries)}
-        <Legend formatter={value => countryFromKey(value, countries)} />
+        <Legend formatter={(value) => countryFromKey(value, countries)} />
         <CartesianGrid stroke={theme.colors.snow} strokeDasharray="8 8" />
         <Line
           type="monotone"
