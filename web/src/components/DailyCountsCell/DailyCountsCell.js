@@ -44,34 +44,28 @@ export const Success = ({
   countries = [],
   // Inherited read-only from hooks
   enabledCountries = [],
-  defaultCountry = 'itl',
-  log = false
-}) => {
-  console.log(dailyCounts)
-
-  return (
-    <>
-      <Chart
-        dailyCounts={dailyCounts}
-        defaultCountry={defaultCountry}
-        enabledCountries={enabledCountries}
-        countries={countries}
-        log={log}
-      />
-      <p>Plotting against: {find(countries, ['iso', defaultCountry]).name}</p>
-      <p>
-        Current countries:{' '}
-        {enabledCountries
-          .map((c) => find(countries, ['iso', c]).name)
-          .join(', ')}
-      </p>
-      <style jsx>{`
-        p {
-          text-align: center;
-          max-width: 24rem;
-          margin: 1rem auto;
-        }
-      `}</style>
-    </>
-  )
-}
+  defaultCountry = 'itl'
+  // log = false
+}) => (
+  <>
+    <Chart
+      dailyCounts={filteredCounts}
+      defaultCountry={defaultCountry}
+      enabledCountries={enabledCountries}
+      countries={countries}
+      // log={log}
+    />
+    <p>Plotting against: {find(countries, ['iso', defaultCountry]).name}</p>
+    <p>
+      Current countries:{' '}
+      {enabledCountries.map((c) => find(countries, ['iso', c]).name).join(', ')}
+    </p>
+    <style jsx>{`
+      p {
+        text-align: center;
+        max-width: 32rem;
+        margin: 1rem auto;
+      }
+    `}</style>
+  </>
+)

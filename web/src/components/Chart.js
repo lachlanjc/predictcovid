@@ -72,7 +72,7 @@ const Chart = ({
   countries = [],
   enabledCountries,
   defaultCountry,
-  log
+  // log
 }) => {
   // sort dailyCounts for all later operations
   const sortedDailyCounts = orderBy(dailyCounts, 'date.date')
@@ -123,7 +123,7 @@ const Chart = ({
   console.log(readyForChart)
 
   return (
-    <ResponsiveContainer width="100%" height={512}>
+    <ResponsiveContainer>
       <LineChart
         data={readyForChart}
         margin={{ top: 12, right: 12, bottom: 12, left: 12 }}
