@@ -15,6 +15,9 @@ export const QUERY = gql`
         currentlyInfected
         totalCases
         totalDeaths
+        date {
+          date
+        }
       }
     }
   }

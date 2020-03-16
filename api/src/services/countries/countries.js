@@ -1,4 +1,10 @@
 export const countries = () =>
   db.country.findMany({
-    include: { dailyCounts: true }
+    include: {
+      dailyCounts: {
+        include: {
+          date: true
+        }
+      }
+    }
   })
