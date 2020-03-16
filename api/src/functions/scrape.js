@@ -37,8 +37,7 @@ const extractDataFromChart = function($, chartId) {
 
   xVals.forEach((val, i) => {
     // need to manually set year to 2020
-    let day = new Date(val)
-    day.setFullYear(2020)
+    let day = new Date(val + ", 2020")
 
     // converts date from "Feb 24" to YYYY-MM-DD
     const fmtedDay = day.toISOString().split('T')[0]
