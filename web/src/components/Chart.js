@@ -125,7 +125,7 @@ const Chart = ({
   }, [dailyCounts])
 
   return (
-    <ResponsiveContainer height={512}>
+    <ResponsiveContainer height={512} id="primary">
       <LineChart
         data={chartData}
         margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
@@ -159,10 +159,10 @@ const Chart = ({
             color: ${theme.colors.muted};
             line-height: 1.5;
           }
-          .recharts-tooltip-label:after {
+          #primary .recharts-tooltip-label:after {
             content: ' days';
           }
-          .recharts-tooltip-item {
+          #primary .recharts-tooltip-item {
             font-family: ${theme.fonts.serif};
             font-size: 1rem;
           }
