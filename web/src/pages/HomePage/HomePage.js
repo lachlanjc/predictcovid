@@ -68,6 +68,9 @@ const HomePage = () => {
         </p>
       </footer>
       <style jsx>{`
+        header {
+          padding-top: 3rem !important;
+        }
         h1 {
           color: ${theme.colors.red};
           font-size: 3rem;
@@ -86,7 +89,7 @@ const HomePage = () => {
           }
         }
         section {
-          margin: 1rem auto 2rem !important;
+          margin: 0 auto 2rem !important;
         }
         .container,
         footer p {
@@ -99,9 +102,6 @@ const HomePage = () => {
           grid-gap: 2rem;
         }
         @media (min-width: 48em) {
-          header {
-            padding: 2rem 0 0;
-          }
           section {
             grid-template-columns: 1fr 2fr;
           }

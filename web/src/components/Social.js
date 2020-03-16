@@ -1,7 +1,6 @@
 import { Facebook, Twitter } from 'react-feather'
-import theme from 'src/theme'
 
-const url = 'https://covid19tracker.now.sh'
+const url = 'https://countrycovid19.netlify.com'
 const esc = (t) => t.split(' ').join('%20')
 const twitterURL = (text, u = url) =>
   `https://twitter.com/intent/tweet?text=${esc(text)}&url=${u}`
