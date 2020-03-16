@@ -63,7 +63,7 @@ const yAxisFormatter = (i) =>
   i
     .toString()
     .replace(/0{6}$/, 'M')
-    .replace(/0{3}$/, 'k')
+    .replace(/(\d+)(\d0{2})$/, (a, b) => `${b}k`)
 const countryFromKey = (label, countries) =>
   find(countries, ['iso', label.toString().slice(0, 3)]).name
 
