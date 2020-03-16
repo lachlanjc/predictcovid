@@ -8,7 +8,7 @@ import theme from 'src/theme'
 
 const HomePage = () => {
   // const [log, setLog] = useState(false)
-  const [defaultCountry, setDefaultCountry] = useState('itl')
+  const [defaultCountry, setDefaultCountry] = useState(['itl', 'Italy'])
   const [enabledCountries, setEnabledCountries] = useState([
     'itl',
     'kor',
@@ -22,8 +22,8 @@ const HomePage = () => {
         <Social />
         <h1>COVID-19 Country Tracker</h1>
         <p>
-          Visualize & track each countries’ progress through the 2020 COVID-19
-          pandemic.
+          Visualize & track the 2020 COVID-19 pandemic. The curves show how many
+          days behind/ahead each country is in relation to <strong>{defaultCountry[1]}</strong>.
         </p>
         <p>
           Data from the WHO via{' '}
@@ -44,7 +44,7 @@ const HomePage = () => {
           <CountriesCell
             enabledCountries={enabledCountries}
             setEnabledCountries={setEnabledCountries}
-            defaultCountry={defaultCountry}
+            defaultCountry={defaultCountry[0]}
             setDefaultCountry={setDefaultCountry}
           />
         </Settings>
@@ -82,11 +82,15 @@ const HomePage = () => {
         h1 ~ p {
           margin: 0 0 1rem;
           color: ${theme.colors.muted};
+          max-width: 42rem;
         }
         @media (prefers-color-scheme: dark) {
           h1 ~ p {
             color: ${theme.colors.snow};
           }
+        }
+        p strong {
+          font-family: ${theme.fonts.sans};
         }
         section {
           margin: 0 auto 2rem !important;

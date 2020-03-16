@@ -1,4 +1,4 @@
-import { orderBy, filter, concat } from 'lodash'
+import { find, orderBy, filter, concat } from 'lodash'
 import Spinner from 'respin'
 import theme from 'src/theme'
 
@@ -36,7 +36,8 @@ export const Success = ({
   defaultCountry,
   setDefaultCountry
 }) => {
-  const changeDefault = ({ target: { value } }) => setDefaultCountry(value)
+  const changeDefault = ({ target: { value } }) =>
+    setDefaultCountry([value, find(countries, ['iso', value]).name])
   const toggleEnabled = ({ target: { id } }) => {
     console.log(countries, id, countries.includes(id))
     setEnabledCountries((c) =>
