@@ -101,7 +101,7 @@ const Chart = ({
     })
   }
 
-  readyForChart = sortBy(readyForChart, 'date')
+  readyForChart = orderBy(readyForChart, 'date')
 
   return (
     <LineChart width={768} height={512} data={readyForChart}>
