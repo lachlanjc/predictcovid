@@ -76,7 +76,7 @@ const Chart = ({
 }) => {
   // sort dailyCounts for all later operations
   const sortedDailyCounts = orderBy(dailyCounts, 'date.date')
-  const offsets = calculateDayOffsets(sortedDailyCounts, 'itl')
+  const offsets = calculateDayOffsets(sortedDailyCounts, defaultCountry)
   console.log(offsets)
 
   const offsetDailyCounts = sortedDailyCounts.map((origCount) => {
