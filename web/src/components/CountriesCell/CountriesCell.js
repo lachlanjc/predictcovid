@@ -15,7 +15,7 @@ export const Loading = () => <div>Loading countries…</div>
 
 export const Empty = () => <div>No countries found</div>
 
-export const Failure = ({ error }) => <div>Error: {error.message}</div>
+export const Failure = ({ error }) => <div>Error: <pre>{error.message}</pre></div>
 
 export const Success = ({
   // Query data

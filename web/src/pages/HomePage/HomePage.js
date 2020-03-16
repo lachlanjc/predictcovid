@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <main>
-      {/* <link rel="stylesheet" href="https://windyhacks.com/fonts.css" /> */}
+      <link rel="stylesheet" href="/fonts.css" />
       <Social />
       <h1>COVID-19 Country Tracker</h1>
       <p>Track all the countries’ pandemic progress</p>
