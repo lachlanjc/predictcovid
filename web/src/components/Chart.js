@@ -69,14 +69,15 @@ const countryFromKey = (label, countries) =>
   find(countries, ['iso', label.toString().slice(0, 3)]).name
 
 const countryColors = {
-  gbr: 'red',
-  usa: 'blue',
-  deu: 'green',
-  esp: 'orange',
-  kor: 'red',
-  itl: 'green',
-  chn: 'red',
-  irn: 'yellow'
+  chn: '#e55934',
+  deu: '#239b77',
+  esp: '#e742c6',
+  fra: '#c05dea',
+  gbr: '#2895b0',
+  irn: '#ab8327',
+  itl: '#479b23',
+  kor: '#e95380',
+  usa: '#5a85ea'
 }
 
 const Chart = ({
@@ -159,11 +160,20 @@ const Chart = ({
             key={iso}
             type="monotone"
             dataKey={`${iso}TotalCases`}
-            stroke={theme.colors[countryColors[iso]]}
+            stroke={countryColors[iso]}
             activeDot={{ r: 8 }}
           />
         ))}
         <style>{`
+          .recharts-default-legend {
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            max-width: 32rem;
+            margin: 0 auto !important;
+          }
           @media (prefers-color-scheme: dark) {
             .recharts-layer:not(.recharts-active-dot) .recharts-dot {
               fill: #1e1e1e !important;
