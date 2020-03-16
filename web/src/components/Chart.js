@@ -8,9 +8,10 @@ import {
   CartesianGrid,
   Line
 } from 'recharts'
-import { orderBy, groupBy, reverse, find } from 'lodash'
+import { orderBy, groupBy, reverse, find, map, sample } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
+import { useState, useEffect } from 'react'
 
 const addDays = (date, days) => {
   let d = new Date(date)
@@ -67,6 +68,17 @@ const yAxisFormatter = (i) =>
 const countryFromKey = (label, countries) =>
   find(countries, ['iso', label.toString().slice(0, 3)]).name
 
+const countryColors = {
+  gbr: 'red',
+  usa: 'blue',
+  deu: 'green',
+  esp: 'orange',
+  kor: 'red',
+  itl: 'green',
+  chn: 'red',
+  irn: 'yellow'
+}
+
 const Chart = ({
   dailyCounts = [],
   countries = [],
@@ -77,7 +89,7 @@ const Chart = ({
   // sort dailyCounts for all later operations
   const sortedDailyCounts = orderBy(dailyCounts, 'date.date')
   const offsets = calculateDayOffsets(sortedDailyCounts, defaultCountry)
-  console.log(offsets)
+  // console.log(offsets)
 
   const offsetDailyCounts = sortedDailyCounts.map((origCount) => {
     // deep clone
@@ -109,24 +121,26 @@ const Chart = ({
     days[count.date.date][`${count.country.iso}TotalDeaths`] = count.totalDeaths
   })
 
-  let readyForChart = []
-
-  for (const day in days) {
-    readyForChart.push({
-      date: day,
-      ...days[day]
-    })
-  }
-
-  readyForChart = orderBy(readyForChart, 'date')
-
-  console.log(readyForChart)
+  // Prepare chart data
+  const [chartData, setChartData] = useState([])
+  useEffect(() => {
+    setChartData(
+      Object.keys(days).map((day) => ({
+        date: day,
+        ...days[day]
+      }))
+    )
+  }, [dailyCounts])
+  // Sorting
+  useEffect(() => {
+    setChartData((chartData) => orderBy(chartData, 'date'))
+  }, [dailyCounts])
 
   return (
     <ResponsiveContainer>
       <LineChart
-        data={readyForChart}
-        margin={{ top: 12, right: 12, bottom: 12, left: 12 }}
+        data={chartData}
+        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
       >
         <XAxis />
         <YAxis tickFormatter={yAxisFormatter} />
@@ -140,30 +154,17 @@ const Chart = ({
         {console.log('Countries', countries)}
         <Legend formatter={(value) => countryFromKey(value, countries)} />
         <CartesianGrid stroke={theme.colors.snow} strokeDasharray="8 8" />
-        <Line
-          type="monotone"
-          dataKey="chnTotalCases"
-          stroke={theme.colors.red}
-          activeDot={{ r: 8 }}
-        />
-        <Line
-          type="monotone"
-          dataKey="itlTotalCases"
-          stroke={theme.colors.green}
-          activeDot={{ r: 8 }}
-        />
-        <Line
-          type="monotone"
-          dataKey="usaTotalCases"
-          stroke={theme.colors.blue}
-          activeDot={{ r: 8 }}
-        />
-        <Line
-          type="monotone"
-          dataKey="korTotalCases"
-          stroke={theme.colors.orange}
-          activeDot={{ r: 8 }}
-        />
+        {map(countries, 'iso')
+          .filter((c) => c !== 'chn')
+          .map((iso) => (
+            <Line
+              key={iso}
+              type="monotone"
+              dataKey={`${iso}TotalCases`}
+              stroke={theme.colors[countryColors[iso]]}
+              activeDot={{ r: 8 }}
+            />
+          ))}
         <style>{`
           @media (prefers-color-scheme: dark) {
             .recharts-layer:not(.recharts-active-dot) .recharts-dot {
