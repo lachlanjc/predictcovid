@@ -2,18 +2,6 @@
 import fetch from 'isomorphic-unfetch'
 import cheerio from 'cheerio'
 
-const COUNTRIES = [
-  'china',
-  'italy',
-  'iran',
-  'south-korea',
-  'spain',
-  'germany',
-  'france',
-  'us',
-  'uk'
-]
-
 // data returns in format: { "2020-02-28": 324, "2020-02-29": 500 }
 const extractDataFromChart = function($, chartId) {
   let htmlAttempt = $(`div#${chartId} + div > script`).html()

@@ -60,7 +60,7 @@ const HomePage = () => {
       </section>
       <footer className="container">
         <p>
-          By <a href="https://lachlanjc.me">@lachlanjc</a> +
+          By <a href="https://lachlanjc.me">@lachlanjc</a> +{' '}
           <a href="https://zachlatta.com">@zachlatta</a>, 2020.
         </p>
         <p>
