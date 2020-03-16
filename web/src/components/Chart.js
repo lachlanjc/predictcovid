@@ -151,7 +151,29 @@ const Chart = ({
           />
         ))}
         <style>{`
+          .recharts-default-tooltip {
+            border-radius: 0.375rem;
+          }
+          .recharts-tooltip-label {
+            font-family: ${theme.fonts.sans};
+            font-size: 2rem;
+            color: ${theme.colors.muted};
+            line-height: 1.5;
+          }
+          .recharts-tooltip-label:after {
+            content: ' days';
+          }
+          .recharts-tooltip-item {
+            font-family: ${theme.fonts.serif};
+            font-size: 1rem;
+          }
           @media (prefers-color-scheme: dark) {
+            .recharts-default-tooltip {
+              background-color: #1e1e1e !important;
+            }
+            .recharts-tooltip-label {
+              color: ${theme.colors.snow};
+            }
             .recharts-layer:not(.recharts-active-dot) .recharts-dot {
               fill: #1e1e1e !important;
             }
