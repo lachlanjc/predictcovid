@@ -11,6 +11,14 @@ import { orderBy, groupBy, reverse } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
 
+const addDays = (date, days) => {
+  let d = new Date(date)
+
+  d.setDate(d.getDate() + days);
+
+  return d
+}
+
 const daysBetween = (date1, date2) => {
   const oneDay = 24 * 60 * 60 * 1000
 
@@ -82,10 +90,26 @@ const Chart = ({
   const offsets = calculateDayOffsets(sortedDailyCounts, 'itl')
   console.log(offsets)
 
+  const offsetDailyCounts = sortedDailyCounts.map(origCount => {
+    // deep clone
+    let count = JSON.parse(JSON.stringify(origCount))
+
+    let offset = offsets[count.country.iso]
+    if (!offset) { return count } // in case of benchmark
+
+    let newDateStr = addDays(new Date(count.date.date), offset)
+
+    // extract the YYYY-DD-MM portion
+    count.date.date = new Date(newDateStr.toISOString().substring(0,10)).toISOString()
+
+    return count
+  })
+  const sortedOffsetDailyCounts = orderBy(offsetDailyCounts, 'date.date')
+
   // Assemble chart display
   let days = {}
 
-  sortedDailyCounts.forEach((count) => {
+  sortedOffsetDailyCounts.forEach((count) => {
     days[count.date.date] = days[count.date.date] || {}
 
     days[count.date.date][`${count.country.iso}TotalCases`] = count.totalCases
@@ -102,6 +126,8 @@ const Chart = ({
   }
 
   readyForChart = orderBy(readyForChart, 'date')
+
+  console.log(readyForChart)
 
   return (
     <LineChart width={768} height={512} data={readyForChart}>
