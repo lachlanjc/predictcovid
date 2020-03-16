@@ -63,18 +63,31 @@ export const Success = ({
         ))}
       </select>
       <h2>Countries</h2>
-      {orderBy(countries, 'name').map(({ iso, name }) => (
-        <label key={iso} title={enabledTooltip(iso)}>
-          <input
-            type="checkbox"
-            id={iso}
-            onChange={toggleEnabled}
-            checked={enabledCountries.includes(iso)}
-          />
-          {name}
-          <span style={{ backgroundColor: theme.colors[iso] }} />
-        </label>
-      ))}
+      {/* America! */}
+      <label title={enabledTooltip('usa')}>
+        <input
+          type="checkbox"
+          id="usa"
+          onChange={toggleEnabled}
+          checked={enabledCountries.includes('usa')}
+        />
+        United States
+        <span style={{ backgroundColor: theme.colors.usa }} />
+      </label>
+      {orderBy(countries, 'name')
+        .filter((c) => c.iso !== 'usa')
+        .map(({ iso, name }) => (
+          <label key={iso} title={enabledTooltip(iso)}>
+            <input
+              type="checkbox"
+              id={iso}
+              onChange={toggleEnabled}
+              checked={enabledCountries.includes(iso)}
+            />
+            {name}
+            <span style={{ backgroundColor: theme.colors[iso] }} />
+          </label>
+        ))}
       <style jsx>{`
         label span {
           display: inline-block;
