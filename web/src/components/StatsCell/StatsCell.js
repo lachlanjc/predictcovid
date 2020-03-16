@@ -99,7 +99,11 @@ export const Success = ({ countries = [] }) => {
         article {
           display: grid;
           grid-gap: 1rem;
-          grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+        }
+        @media (min-width: 32em) {
+          article {
+            grid-template-columns: repeat(3, 1fr);
+          }
         }
         article section {
           position: relative;

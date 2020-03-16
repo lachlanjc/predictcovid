@@ -137,7 +137,7 @@ const Chart = ({
   }, [dailyCounts])
 
   return (
-    <ResponsiveContainer>
+    <ResponsiveContainer height={512}>
       <LineChart
         data={chartData}
         margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
@@ -154,17 +154,15 @@ const Chart = ({
         {console.log('Countries', countries)}
         <Legend formatter={(value) => countryFromKey(value, countries)} />
         <CartesianGrid stroke={theme.colors.snow} strokeDasharray="8 8" />
-        {map(countries, 'iso')
-          .filter((c) => c !== 'chn')
-          .map((iso) => (
-            <Line
-              key={iso}
-              type="monotone"
-              dataKey={`${iso}TotalCases`}
-              stroke={theme.colors[countryColors[iso]]}
-              activeDot={{ r: 8 }}
-            />
-          ))}
+        {enabledCountries.map((iso) => (
+          <Line
+            key={iso}
+            type="monotone"
+            dataKey={`${iso}TotalCases`}
+            stroke={theme.colors[countryColors[iso]]}
+            activeDot={{ r: 8 }}
+          />
+        ))}
         <style>{`
           @media (prefers-color-scheme: dark) {
             .recharts-layer:not(.recharts-active-dot) .recharts-dot {

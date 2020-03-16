@@ -98,6 +98,15 @@ const HomePage = () => {
             grid-template-columns: 1fr 2fr;
           }
         }
+        @media (min-width: 72em) {
+          .container {
+            max-width: 72rem;
+            padding: 2rem 1rem;
+          }
+          section {
+            grid-template-columns: 1fr 4fr;
+          }
+        }
         footer {
           margin: 4rem auto 3rem;
           padding: 2rem 1rem;
