@@ -4,7 +4,7 @@ import Settings from 'src/components/Settings'
 import Stat from 'src/components/StatsCell/Stat'
 import StatChart from 'src/components/StatsCell/StatChart'
 import commaNumber from 'comma-number'
-import { map, find, last, trim } from 'lodash'
+import { map, find, last, trim, orderBy } from 'lodash'
 
 export const QUERY = gql`
   query {
@@ -63,7 +63,7 @@ export const Success = ({ countries = [] }) => {
 
   // Calculate stats
   const [counts, setCounts] = useState([])
-  const stat = (key) => commaNumber(last(map(counts, key)))
+  const stat = (key) => commaNumber(last(map(orderBy(counts, 'date.date'), key)))
   useEffect(() => {
     setCounts(find(countries, ['iso', country])?.dailyCounts)
   }, [country])
