@@ -36,14 +36,15 @@ export const Failure = ({ error }) => (
 // The IPInfo service uses 2-letter codes :(
 // Hardcoding switching these over to the 3-letter codes our database uses
 const list = {
-  GB: 'gbr',
-  US: 'usa',
+  CN: 'chn',
   DE: 'deu',
   ES: 'esp',
-  KR: 'kor',
+  FR: 'fra',
+  GB: 'gbr',
+  IR: 'irn',
   IT: 'itl',
-  CN: 'chn',
-  IR: 'irn'
+  KR: 'kor',
+  US: 'usa',
 }
 
 export const Success = ({ countries = [] }) => {
