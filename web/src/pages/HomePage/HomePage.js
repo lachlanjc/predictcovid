@@ -18,15 +18,17 @@ const HomePage = () => {
   return (
     <>
       <link rel="stylesheet" href="/fonts.css" key="fonts" />
-      <header>
-        <div className="container">
-          <Social />
-          <h1>COVID-19 Country Tracker</h1>
-          <p>
-            Visualize & track each countries’ progress through the 2020 COVID-19
-            pandemic.
-          </p>
-        </div>
+      <header className="container">
+        <Social />
+        <h1>COVID-19 Country Tracker</h1>
+        <p>
+          Visualize & track each countries’ progress through the 2020 COVID-19
+          pandemic.
+        </p>
+        <p>
+          Data from{' '}
+          <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
+        </p>
       </header>
       <section className="container">
         <Settings>
@@ -58,24 +60,16 @@ const HomePage = () => {
       </section>
       <footer className="container">
         <p>
-          By <a href="https://zachlatta.com">@zachlatta</a> +{' '}
-          <a href="https://lachlanjc.me">@lachlanjc</a>, 2020.
+          By <a href="https://lachlanjc.me">@lachlanjc</a> +
+          <a href="https://zachlatta.com">@zachlatta</a>, 2020.
         </p>
         <p>
           <a href="https://github.com/lachlanjc/covid19">Open source!</a>
         </p>
       </footer>
       <style jsx>{`
-        header {
-          background-color: ${theme.colors.red};
-          color: ${theme.colors.snow};
-          padding: 1rem 0;
-        }
-        header .container {
-          margin: auto;
-        }
         h1 {
-          color: #fff;
+          color: ${theme.colors.red};
           font-size: 3rem;
           line-height: 1.125;
           letter-spacing: -0.02em;
@@ -84,14 +78,21 @@ const HomePage = () => {
         }
         h1 + p {
           margin: 0;
+          color: ${theme.colors.muted};
+        }
+        @media (prefers-color-scheme: dark) {
+          h1 + p {
+            color: ${theme.colors.snow};
+          }
         }
         section {
-          margin: 3rem auto !important;
+          margin: 1rem auto 2rem !important;
         }
         .container,
         footer p {
           max-width: 64rem;
           padding: 0 1rem;
+          margin: auto;
         }
         section {
           display: grid;
@@ -99,7 +100,7 @@ const HomePage = () => {
         }
         @media (min-width: 48em) {
           header {
-            padding: 3rem 0 2rem;
+            padding: 2rem 0 0;
           }
           section {
             grid-template-columns: 1fr 2fr;
@@ -119,13 +120,13 @@ const HomePage = () => {
           padding: 2rem 1rem;
           text-align: center;
         }
+        header a,
         footer a {
           color: ${theme.colors.blue};
+          text-decoration: underline;
           text-decoration-line: underline;
           text-decoration-color: initial;
-          text-decoration: underline;
           text-underline-position: under;
-          text-decoration-style: wavy;
         }
       `}</style>
     </>
