@@ -9,7 +9,17 @@ import theme from 'src/theme'
 const HomePage = () => {
   // const [log, setLog] = useState(false)
   const [defaultCountry, setDefaultCountry] = useState('itl')
-  const [enabledCountries, setEnabledCountries] = useState([])
+  const [enabledCountries, setEnabledCountries] = useState([
+    'chn',
+    'deu',
+    'esp',
+    'fra',
+    'gbr',
+    'irn',
+    'itl',
+    'kor',
+    'usa'
+  ])
 
   return (
     <>
@@ -18,7 +28,10 @@ const HomePage = () => {
         <div className="container">
           <Social />
           <h1>COVID-19 Country Tracker</h1>
-          <p>Visualize & track each countries’ progress through the 2020 COVID-19 pandemic.</p>
+          <p>
+            Visualize & track each countries’ progress through the 2020 COVID-19
+            pandemic.
+          </p>
         </div>
       </header>
       <section className="container">
