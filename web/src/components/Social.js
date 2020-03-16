@@ -1,4 +1,5 @@
 import { Facebook, Twitter } from 'react-feather'
+import theme from 'src/theme'
 
 const url = 'https://countrycovid19.netlify.com'
 const esc = (t) => t.split(' ').join('%20')
@@ -20,7 +21,7 @@ const ShareButton = ({ service, children, ...props }) => (
         display: inline-block;
         text-decoration: none;
         margin-right: 2rem;
-        color: #fff;
+        color: ${theme.colors.red};
       }
     `}</style>
   </a>

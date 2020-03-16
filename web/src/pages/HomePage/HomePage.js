@@ -79,12 +79,12 @@ const HomePage = () => {
           margin-top: 0;
           margin-bottom: 1rem;
         }
-        h1 + p {
-          margin: 0;
+        h1 ~ p {
+          margin: 0 0 1rem;
           color: ${theme.colors.muted};
         }
         @media (prefers-color-scheme: dark) {
-          h1 + p {
+          h1 ~ p {
             color: ${theme.colors.snow};
           }
         }

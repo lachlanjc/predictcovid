@@ -68,9 +68,9 @@ export const Success = ({
   defaultCountry = 'itl'
   // log = false
 }) => {
-  const filteredCounts = filter(dailyCounts, count => {
-    return enabledCountries.includes(count.country.iso)
-  })
+  const filteredCounts = filter(dailyCounts, (count) =>
+    enabledCountries.includes(count.country.iso)
+  )
   console.log(filteredCounts)
 
   return (
