@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { map, orderBy, remove, concat } from 'lodash'
+import theme from 'src/theme'
 
 export const QUERY = gql`
   query {
@@ -63,8 +64,18 @@ export const Success = ({
             checked={enabledCountries.includes(iso)}
           />
           {name}
+          <span style={{ backgroundColor: theme.colors[iso] }} />
         </label>
       ))}
+      <style jsx>{`
+        label span {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          border-radius: 6px;
+          margin-left: auto;
+        }
+      `}</style>
     </>
   )
 }

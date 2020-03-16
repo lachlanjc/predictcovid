@@ -4,11 +4,10 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  Legend,
   CartesianGrid,
   Line
 } from 'recharts'
-import { orderBy, groupBy, reverse, find, map, sample } from 'lodash'
+import { orderBy, groupBy, reverse, find } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
 import { useState, useEffect } from 'react'
@@ -67,18 +66,6 @@ const yAxisFormatter = (i) =>
     .replace(/0{3}$/, 'k')
 const countryFromKey = (label, countries) =>
   find(countries, ['iso', label.toString().slice(0, 3)]).name
-
-const countryColors = {
-  chn: '#e55934',
-  deu: '#239b77',
-  esp: '#e742c6',
-  fra: '#c05dea',
-  gbr: '#2895b0',
-  irn: '#ab8327',
-  itl: '#479b23',
-  kor: '#e95380',
-  usa: '#5a85ea'
-}
 
 const Chart = ({
   dailyCounts = [],
@@ -153,27 +140,17 @@ const Chart = ({
           ]}
         />
         {console.log('Countries', countries)}
-        <Legend formatter={(value) => countryFromKey(value, countries)} />
         <CartesianGrid stroke={theme.colors.snow} strokeDasharray="8 8" />
         {enabledCountries.map((iso) => (
           <Line
             key={iso}
             type="monotone"
             dataKey={`${iso}TotalCases`}
-            stroke={countryColors[iso]}
+            stroke={theme.colors[iso]}
             activeDot={{ r: 8 }}
           />
         ))}
         <style>{`
-          .recharts-default-legend {
-            text-align: center;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            max-width: 32rem;
-            margin: 0 auto !important;
-          }
           @media (prefers-color-scheme: dark) {
             .recharts-layer:not(.recharts-active-dot) .recharts-dot {
               fill: #1e1e1e !important;

@@ -55,7 +55,6 @@ export const Success = ({
       countries={countries}
       // log={log}
     />
-    <p>Plotting against: {find(countries, ['iso', defaultCountry]).name}</p>
     <p>
       Current countries:{' '}
       {enabledCountries.map((c) => find(countries, ['iso', c]).name).join(', ')}

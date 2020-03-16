@@ -10,6 +10,16 @@ const theme = {
     yellow: '#fde74c',
     green: '#9bc53d',
     blue: '#5bc0eb',
+
+    chn: '#e55934',
+    deu: '#239b77',
+    esp: '#e742c6',
+    fra: '#c05dea',
+    gbr: '#2895b0',
+    irn: '#ab8327',
+    itl: '#479b23',
+    kor: '#e95380',
+    usa: '#5a85ea'
   },
   fonts: {
     sans: `'Gotham Rounded SSm A', 'Gotham Rounded SSm B', ${fonts}`,
