@@ -80,16 +80,16 @@ export const Success = ({ countries = [] }) => {
       </Settings>
       <article>
         <section>
-          <Stat value={stat('currentlyInfected')} label="Currently infected" />
           <StatChart data={counts} dataKey="currentlyInfected" color="green" />
+          <Stat value={stat('currentlyInfected')} label="Currently infected" />
         </section>
         <section>
-          <Stat value={stat('totalCases')} label="Total cases" />
           <StatChart data={counts} dataKey="totalCases" color="orange" />
+          <Stat value={stat('totalCases')} label="Total cases" />
         </section>
         <section>
-          <Stat value={stat('totalDeaths')} label="Total deaths" />
           <StatChart data={counts} dataKey="totalDeaths" color="red" />
+          <Stat value={stat('totalDeaths')} label="Total deaths" />
         </section>
       </article>
       <style jsx>{`
@@ -103,7 +103,7 @@ export const Success = ({ countries = [] }) => {
         }
         article section :global(.recharts-responsive-container) {
           position: absolute !important;
-          bottom: 0;
+          top: 0;
           left: 0;
           right: 0;
         }

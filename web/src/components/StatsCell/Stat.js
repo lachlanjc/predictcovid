@@ -23,6 +23,11 @@ const Stat = ({ value, label, unit, ...props }) => (
         letter-spacing: 0.05em;
         text-transform: uppercase;
       }
+      @media (prefers-color-scheme: dark) {
+        .stat__label {
+          color: ${theme.colors.snow};
+        }
+      }
     `}</style>
   </div>
 )
