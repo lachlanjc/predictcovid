@@ -1,7 +1,7 @@
 import Chart from 'src/components/Chart'
 import Spinner from 'respin'
 import theme from 'src/theme'
-import { find } from 'lodash'
+import { filter } from 'lodash'
 
 export const QUERY = gql`
   query {
@@ -67,12 +67,19 @@ export const Success = ({
   enabledCountries = [],
   defaultCountry = 'itl'
   // log = false
-}) => (
-  <Chart
-    dailyCounts={dailyCounts}
-    defaultCountry={defaultCountry}
-    enabledCountries={enabledCountries}
-    countries={countries}
-    // log={log}
-  />
-)
+}) => {
+  const filteredCounts = filter(dailyCounts, count => {
+    return enabledCountries.includes(count.country.iso)
+  })
+  console.log(filteredCounts)
+
+  return (
+    <Chart
+      dailyCounts={filteredCounts}
+      defaultCountry={defaultCountry}
+      enabledCountries={enabledCountries}
+      countries={countries}
+      // log={log}
+    />
+  )
+}
