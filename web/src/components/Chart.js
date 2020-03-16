@@ -8,21 +8,18 @@ import {
   CartesianGrid,
   Line
 } from 'recharts'
-import { orderBy, groupBy, reverse } from 'lodash'
+import { orderBy, groupBy, reverse, find } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
 
 const addDays = (date, days) => {
   let d = new Date(date)
-
   d.setDate(d.getDate() + days)
-
   return d
 }
 
 const daysBetween = (date1, date2) => {
   const oneDay = 24 * 60 * 60 * 1000
-
   return Math.round((date1.getTime() - date2.getTime()) / oneDay)
 }
 
@@ -67,11 +64,8 @@ const yAxisFormatter = (i) =>
     .toString()
     .replace(/0{6}$/, 'M')
     .replace(/0{3}$/, 'k')
-const countryFromKey = (key) =>
-  key
-    .toString()
-    .slice(0, 3)
-    .toUpperCase()
+const countryFromKey = (label, countries) =>
+  find(countries, ['iso', label.toString().slice(0, 3)]).name
 
 const Chart = ({
   dailyCounts = [],
@@ -138,9 +132,10 @@ const Chart = ({
         <YAxis tickFormatter={yAxisFormatter} />
         <Tooltip
           separator=": "
-          formatter={(value, key) => [commaNumber(value), countryFromKey(key)]}
+          formatter={(value, key) => [commaNumber(value), countryFromKey(key, countries)]}
         />
-        <Legend formatter={countryFromKey} />
+        {console.log('Countries', countries)}
+        <Legend formatter={value => countryFromKey(value, countries)} />
         <CartesianGrid stroke={theme.colors.snow} strokeDasharray="8 8" />
         <Line
           type="monotone"

@@ -55,6 +55,7 @@ export const Success = ({
         dailyCounts={dailyCounts}
         defaultCountry={defaultCountry}
         enabledCountries={enabledCountries}
+        countries={countries}
         log={log}
       />
       <p>Plotting against: {find(countries, ['iso', defaultCountry]).name}</p>
