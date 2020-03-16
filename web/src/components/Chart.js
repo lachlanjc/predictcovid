@@ -26,7 +26,7 @@ const daysBetween = (date1, date2) => {
 const calculateDayOffsets = (sortedDailyCounts = [], benchmarkCountryISO) => {
   const countryBenchmark = benchmarkCountryISO
   const countryCounts = groupBy(sortedDailyCounts, 'country.iso')
-  const benchmarkCounts = countryCounts[countryBenchmark]
+  const benchmarkCounts = countryCounts[countryBenchmark] || []
   const revBenchmarkCounts = reverse(benchmarkCounts)
 
   let countries = {}
