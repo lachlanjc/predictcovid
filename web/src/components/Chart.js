@@ -139,7 +139,6 @@ const Chart = ({
             countryFromKey(key, countries)
           ]}
         />
-        {console.log('Countries', countries)}
         <CartesianGrid stroke={theme.colors.snow} strokeDasharray="8 8" />
         {enabledCountries.map((iso) => (
           <Line

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { map, orderBy, remove, concat } from 'lodash'
+import Spinner from 'respin'
 import theme from 'src/theme'
 
 export const QUERY = gql`
@@ -12,11 +13,27 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading countries…</div>
+export const Loading = () => (
+  <div>
+    <Spinner size={48} />
+    <span>Countries…</span>
+    <style jsx>{`
+      span {
+        display: block;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+      }
+    `}</style>
+  </div>
+)
 
 export const Empty = () => <div>No countries found</div>
 
-export const Failure = ({ error }) => <div>Error: <pre>{error.message}</pre></div>
+export const Failure = ({ error }) => (
+  <div>
+    Error: <pre>{error.message}</pre>
+  </div>
+)
 
 export const Success = ({
   // Query data
@@ -28,8 +45,10 @@ export const Success = ({
   setDefaultCountry
 }) => {
   const changeDefault = ({ target: { value } }) => setDefaultCountry(value)
-  const toggleEnabled = ({ target: { id } }) =>
+  const toggleEnabled = ({ target: { id } }) => {
+    console.log(countries, id, countries.includes(id))
     setEnabledCountries((c) => (c.includes(id) ? remove(c, id) : concat(c, id)))
+  }
   useEffect(() => {
     if (defaultCountry === 'itl' && enabledCountries.length === 0) {
       setEnabledCountries(map(countries, 'iso'))

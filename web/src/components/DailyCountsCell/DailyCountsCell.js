@@ -1,4 +1,5 @@
 import Chart from 'src/components/Chart'
+import Spinner from 'respin'
 import { find } from 'lodash'
 
 export const QUERY = gql`
@@ -28,7 +29,19 @@ export const QUERY = gql`
   }
 `
 
-export const Loading = () => <div>Loading chart…</div>
+export const Loading = () => (
+  <div>
+    <Spinner size={72} />
+    <style jsx>{`
+      div {
+        width: 100%;
+        height: 8rem;
+        display: flex;
+        place-content: center;
+      }
+    `}</style>
+  </div>
+)
 
 export const Empty = () => <div>No COVID-19 data found</div>
 
