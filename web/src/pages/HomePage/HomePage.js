@@ -26,7 +26,7 @@ const HomePage = () => {
           pandemic.
         </p>
         <p>
-          Data from{' '}
+          Data from the WHO via{' '}
           <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
         </p>
       </header>
