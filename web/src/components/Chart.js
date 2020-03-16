@@ -128,7 +128,7 @@ const Chart = ({
     <ResponsiveContainer height={512} id="primary">
       <LineChart
         data={chartData}
-        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
+        margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
       >
         <XAxis />
         <YAxis tickFormatter={yAxisFormatter} />

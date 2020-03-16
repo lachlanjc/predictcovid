@@ -1,5 +1,6 @@
 import Chart from 'src/components/Chart'
 import Spinner from 'respin'
+import theme from 'src/theme'
 import { find } from 'lodash'
 
 export const QUERY = gql`
@@ -35,9 +36,16 @@ export const Loading = () => (
     <style jsx>{`
       div {
         width: 100%;
-        height: 8rem;
+        height: 12rem;
         display: flex;
-        place-content: center;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed ${theme.colors.muted};
+      }
+      @media (min-width: 48em) {
+        div {
+          height: 32rem;
+        }
       }
     `}</style>
   </div>

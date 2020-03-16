@@ -16,14 +16,7 @@ export const QUERY = gql`
 export const Loading = () => (
   <div>
     <Spinner size={48} />
-    <span>Countries…</span>
-    <style jsx>{`
-      span {
-        display: block;
-        margin-top: 1rem;
-        font-size: 1.5rem;
-      }
-    `}</style>
+    <h2>Countries</h2>
   </div>
 )
 
