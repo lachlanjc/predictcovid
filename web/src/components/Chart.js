@@ -141,7 +141,7 @@ const Chart = ({
           formatter={(value, key) => [commaNumber(value), countryFromKey(key)]}
         />
         <Legend formatter={countryFromKey} />
-        <CartesianGrid stroke={theme.colors.snow} strokeDasharray="5 5" />
+        <CartesianGrid stroke={theme.colors.snow} strokeDasharray="8 8" />
         <Line
           type="monotone"
           dataKey="chnTotalCases"
@@ -168,6 +168,9 @@ const Chart = ({
         />
         <style>{`
           @media (prefers-color-scheme: dark) {
+            .recharts-layer:not(.recharts-active-dot) .recharts-dot {
+              fill: #1e1e1e !important;
+            }
             line.recharts-cartesian-axis-line,
             line.recharts-cartesian-axis-tick-line,
             .recharts-cartesian-grid line {
