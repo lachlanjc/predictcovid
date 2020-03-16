@@ -1,4 +1,5 @@
 import {
+  ResponsiveContainer,
   LineChart,
   XAxis,
   YAxis,
@@ -14,7 +15,7 @@ import theme from 'src/theme'
 const addDays = (date, days) => {
   let d = new Date(date)
 
-  d.setDate(d.getDate() + days);
+  d.setDate(d.getDate() + days)
 
   return d
 }
@@ -49,12 +50,6 @@ const calculateDayOffsets = (sortedDailyCounts = [], benchmarkCountryISO) => {
           count.totalCases < currentCount.totalCases &&
           count.totalCases > previousCount.totalCases
         ) {
-          // console.log("MATCH FOUND")
-          // console.log("count", count)
-          // console.log("currentCount", currentCount)
-          // console.log("previousCount", previousCount)
-          // console.log("MATCH FOUND - DONE FOR", country)
-
           countries[country] = daysBetween(
             new Date(currentCount.date.date),
             new Date(count.date.date)
@@ -90,17 +85,21 @@ const Chart = ({
   const offsets = calculateDayOffsets(sortedDailyCounts, 'itl')
   console.log(offsets)
 
-  const offsetDailyCounts = sortedDailyCounts.map(origCount => {
+  const offsetDailyCounts = sortedDailyCounts.map((origCount) => {
     // deep clone
     let count = JSON.parse(JSON.stringify(origCount))
 
     let offset = offsets[count.country.iso]
-    if (!offset) { return count } // in case of benchmark
+    if (!offset) {
+      return count
+    } // in case of benchmark
 
     let newDateStr = addDays(new Date(count.date.date), offset)
 
     // extract the YYYY-DD-MM portion
-    count.date.date = new Date(newDateStr.toISOString().substring(0,10)).toISOString()
+    count.date.date = new Date(
+      newDateStr.toISOString().substring(0, 10)
+    ).toISOString()
 
     return count
   })
@@ -130,40 +129,54 @@ const Chart = ({
   console.log(readyForChart)
 
   return (
-    <LineChart width={768} height={512} data={readyForChart}>
-      <XAxis />
-      <YAxis tickFormatter={yAxisFormatter} scale={log ? 'sqrt' : 'linear'} />
-      <Tooltip
-        separator=": "
-        formatter={(value, key) => [commaNumber(value), countryFromKey(key)]}
-      />
-      <Legend formatter={countryFromKey} />
-      <CartesianGrid stroke={theme.colors.snow} strokeDasharray="5 5" />
-      <Line
-        type="monotone"
-        dataKey="chnTotalCases"
-        stroke={theme.colors.red}
-        activeDot={{ r: 8 }}
-      />
-      <Line
-        type="monotone"
-        dataKey="itlTotalCases"
-        stroke={theme.colors.green}
-        activeDot={{ r: 8 }}
-      />
-      <Line
-        type="monotone"
-        dataKey="usaTotalCases"
-        stroke={theme.colors.blue}
-        activeDot={{ r: 8 }}
-      />
-      <Line
-        type="monotone"
-        dataKey="korTotalCases"
-        stroke={theme.colors.orange}
-        activeDot={{ r: 8 }}
-      />
-    </LineChart>
+    <ResponsiveContainer width="100%" height={512}>
+      <LineChart
+        data={readyForChart}
+        margin={{ top: 12, right: 12, bottom: 12, left: 12 }}
+      >
+        <XAxis />
+        <YAxis tickFormatter={yAxisFormatter} />
+        <Tooltip
+          separator=": "
+          formatter={(value, key) => [commaNumber(value), countryFromKey(key)]}
+        />
+        <Legend formatter={countryFromKey} />
+        <CartesianGrid stroke={theme.colors.snow} strokeDasharray="5 5" />
+        <Line
+          type="monotone"
+          dataKey="chnTotalCases"
+          stroke={theme.colors.red}
+          activeDot={{ r: 8 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="itlTotalCases"
+          stroke={theme.colors.green}
+          activeDot={{ r: 8 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="usaTotalCases"
+          stroke={theme.colors.blue}
+          activeDot={{ r: 8 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="korTotalCases"
+          stroke={theme.colors.orange}
+          activeDot={{ r: 8 }}
+        />
+        <style>{`
+          @media (prefers-color-scheme: dark) {
+            line.recharts-cartesian-axis-line,
+            line.recharts-cartesian-axis-tick-line,
+            .recharts-cartesian-grid line {
+              opacity: 0.25 !important;
+            }
+          }
+        `}</style>
+      </LineChart>
+    </ResponsiveContainer>
   )
 }
 

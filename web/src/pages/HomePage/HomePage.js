@@ -12,12 +12,16 @@ const HomePage = () => {
   const [enabledCountries, setEnabledCountries] = useState([])
 
   return (
-    <main>
-      <link rel="stylesheet" href="/fonts.css" />
-      <Social />
-      <h1>COVID-19 Country Tracker</h1>
-      <p>Track all the countries’ pandemic progress</p>
-      <section>
+    <>
+      <link rel="stylesheet" href="/fonts.css" key="fonts" />
+      <header>
+        <div className="container">
+          <Social />
+          <h1>COVID-19 Country Tracker</h1>
+          <p>Visualize & track each countries’ progress through the 2020 COVID-19 pandemic.</p>
+        </div>
+      </header>
+      <section className="container">
         <Settings>
           {/* <label>
             <input
@@ -42,10 +46,10 @@ const HomePage = () => {
           />
         </article>
       </section>
-      <section>
+      <section className="container">
         <StatsCell />
       </section>
-      <footer>
+      <footer className="container">
         <p>
           By <a href="https://zachlatta.com">@zachlatta</a> +{' '}
           <a href="https://lachlanjc.me">@lachlanjc</a>, 2020.
@@ -55,33 +59,47 @@ const HomePage = () => {
         </p>
       </footer>
       <style jsx>{`
-        main {
-          max-width: 64rem;
-          margin: 2rem auto;
-          padding: 0 1rem;
+        header {
+          background-color: ${theme.colors.red};
+          color: ${theme.colors.snow};
+          padding: 1rem 0;
+        }
+        header .container {
+          margin: auto;
         }
         h1 {
+          color: #fff;
           font-size: 3rem;
           line-height: 1.125;
           letter-spacing: -0.02em;
           margin-top: 0;
-          margin-bottom: 0;
+          margin-bottom: 1rem;
         }
         h1 + p {
-          margin-top: 1rem;
-          margin-bottom: 3rem;
+          margin: 0;
+        }
+        section {
+          margin: 3rem auto !important;
+        }
+        .container,
+        footer p {
+          max-width: 64rem;
+          padding: 0 1rem;
         }
         section {
           display: grid;
           grid-gap: 2rem;
-          margin-bottom: 3rem;
         }
         @media (min-width: 48em) {
+          header {
+            padding: 3rem 0 2rem;
+          }
           section {
             grid-template-columns: 1fr 2fr;
           }
         }
         footer {
+          margin: 4rem auto 3rem;
           padding: 2rem 1rem;
           text-align: center;
         }
@@ -94,7 +112,7 @@ const HomePage = () => {
           text-decoration-style: wavy;
         }
       `}</style>
-    </main>
+    </>
   )
 }
 

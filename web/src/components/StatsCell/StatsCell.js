@@ -100,6 +100,7 @@ export const Success = ({ countries = [] }) => {
         }
         article section {
           position: relative;
+          min-height: 8rem;
         }
         article section :global(.recharts-responsive-container) {
           position: absolute !important;
