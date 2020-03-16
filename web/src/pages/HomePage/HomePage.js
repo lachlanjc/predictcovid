@@ -10,12 +10,6 @@ const HomePage = () => {
   // const [log, setLog] = useState(false)
   const [defaultCountry, setDefaultCountry] = useState('itl')
   const [enabledCountries, setEnabledCountries] = useState([
-    'chn',
-    'deu',
-    'esp',
-    'fra',
-    'gbr',
-    'irn',
     'itl',
     'kor',
     'usa'
