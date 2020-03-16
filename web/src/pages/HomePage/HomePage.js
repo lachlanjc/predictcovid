@@ -50,7 +50,7 @@ const HomePage = () => {
         </Settings>
         <article>
           <DailyCountsCell
-            defaultCountry={defaultCountry}
+            defaultCountry={defaultCountry[0]}
             enabledCountries={enabledCountries}
           />
         </article>
