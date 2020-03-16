@@ -10,7 +10,9 @@ Built with [RedwoodJS](https://redwoodjs.com), an interactive visualization of t
 charted country-to-country. Made by [@lachlanjc](https://lachlanjc.me) +
 [@zachlatta](https://zachlatta.com) (while in isolation, of course).
 
-Check it out live: [**countrycovid19.netlify.com**](https://countrycovid19.netlify.com)
+Check it out live: [**predictcovid.com**](https://predictcovid.com)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/50ed43f5-9046-4e7e-b7ce-d6f571c704b1/deploy-status)](https://app.netlify.com/sites/predictcovid/deploys)
 
 ## Development
 
