@@ -19,12 +19,9 @@ const ShareButton = ({ service, children, ...props }) => (
   </a>
 )
 
-const Social = () => (
+const Social = ({ text }) => (
   <section>
-    <ShareButton
-      href={twitterURL('Interactive COVID-19 country tracker', url)}
-      service="Twitter"
-    >
+    <ShareButton href={twitterURL(text, url)} service="Twitter">
       <Twitter />
     </ShareButton>
     <ShareButton href={facebookURL(url)} service="Facebook">

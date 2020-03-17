@@ -58,7 +58,9 @@ const HomePage = () => {
         <StatsCell />
       </section>
       <footer className="container">
-        <Social />
+        <Social
+          text={`How many days each country’s outbreak is behind or ahead of ${defaultCountry[1]}`}
+        />
         <p>
           Source: WHO via{' '}
           <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
@@ -124,7 +126,6 @@ const HomePage = () => {
         footer p {
           margin: 0 auto 0.75rem;
         }
-        header a,
         footer a {
           color: ${theme.colors.blue};
           text-decoration: underline;
