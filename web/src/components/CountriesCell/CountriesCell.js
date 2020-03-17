@@ -74,6 +74,7 @@ export const Success = ({
           id="usa"
           onChange={toggleEnabled}
           checked={enabledCountries.includes('usa')}
+          disabled={defaultCountry === 'usa'}
         />
         United States
         <span style={{ backgroundColor: theme.colors.usa }} />
@@ -87,6 +88,7 @@ export const Success = ({
               id={iso}
               onChange={toggleEnabled}
               checked={enabledCountries.includes(iso)}
+              disabled={defaultCountry === iso}
             />
             {name}
             <span style={{ backgroundColor: theme.colors[iso] }} />
