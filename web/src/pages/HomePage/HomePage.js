@@ -25,10 +25,10 @@ const HomePage = () => {
           Visualize the 2020 COVID-19 pandemic, country-to-country. This graph
           shows{' '}
           <mark>
-            how&nbsp;many days a country’s pandemic is behind or ahead of{' '}
+            how&nbsp;many days each country’s outbreak is behind or ahead of{' '}
             <strong>{defaultCountry[1]}</strong>
           </mark>
-          . (E.g. it offsets each country since it last intersected.) Updated
+          . (E.g.&nbsp;it&nbsp;offsets each country since it last intersected.) Updated
           daily.
         </p>
         <p>
