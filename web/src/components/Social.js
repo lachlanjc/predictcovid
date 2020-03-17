@@ -1,7 +1,7 @@
-import { Facebook, Twitter } from 'react-feather'
+import { Facebook, Twitter, GitHub } from 'react-feather'
 import theme from 'src/theme'
 
-const url = 'https://countrycovid19.netlify.com'
+const url = 'https://predictcovid.com'
 const esc = (t) => t.split(' ').join('%20')
 const twitterURL = (text, u = url) =>
   `https://twitter.com/intent/tweet?text=${esc(text)}&url=${u}`
@@ -30,6 +30,9 @@ const Social = () => (
     <ShareButton href={facebookURL(url)} service="Facebook">
       <Facebook />
     </ShareButton>
+    <a href="https://github.com/lachlanjc/covid19">
+      <GitHub />
+    </a>
     <style jsx>{`
       section {
         display: flex;

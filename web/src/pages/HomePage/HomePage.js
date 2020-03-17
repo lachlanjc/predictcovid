@@ -28,11 +28,6 @@ const HomePage = () => {
           offsets each country since it last intersected with the selected
           country.
         </p>
-        <p>
-          Source: WHO via{' '}
-          <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
-          Updated&nbsp;daily.
-        </p>
       </header>
       <section className="container swap">
         <Settings>
@@ -65,6 +60,11 @@ const HomePage = () => {
       <footer className="container">
         <Social />
         <p>
+          Source: WHO via{' '}
+          <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
+          Updated&nbsp;daily.
+        </p>
+        <p>
           By <a href="https://lachlanjc.me">@lachlanjc</a> +{' '}
           <a href="https://zachlatta.com">@zachlatta</a>, 2020.
         </p>
@@ -79,7 +79,7 @@ const HomePage = () => {
           color: ${theme.colors.red};
           font-size: 2rem;
           max-width: 48rem;
-          line-height: 1.125;
+          line-height: 1.25;
           letter-spacing: -0.02em;
           margin-top: 0;
           margin-bottom: 1rem;
@@ -155,13 +155,10 @@ const HomePage = () => {
         @media (min-width: 72em) {
           .container {
             max-width: 72rem;
-            padding: 2rem 1rem;
+            padding: 1rem;
           }
           section {
             grid-template-columns: 1fr 4fr;
-          }
-          p mark {
-            margin-left: -0.375em;
           }
         }
       `}</style>
