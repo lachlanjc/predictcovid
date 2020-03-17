@@ -54,21 +54,26 @@ export const Success = ({
 
   return (
     <>
-      <label htmlFor="defaultCountry">
-        Plot against
-        <span style={{ backgroundColor: theme.colors[defaultCountry] }} />
-      </label>
-      <select
-        name="defaultCountry"
-        value={defaultCountry}
-        onChange={changeDefault}
-      >
-        {countries.map((c) => (
-          <option key={c.iso} value={c.iso}>
-            {c.name}
-          </option>
-        ))}
-      </select>
+      <label htmlFor="defaultCountry">Plot against</label>
+      <div>
+        <select
+          name="defaultCountry"
+          value={defaultCountry}
+          onChange={changeDefault}
+        >
+          {countries.map((c) => (
+            <option key={c.iso} value={c.iso}>
+              {c.name}
+            </option>
+          ))}
+        </select>
+        <span
+          style={{
+            backgroundColor: theme.colors[defaultCountry],
+            marginLeft: 'auto'
+          }}
+        />
+      </div>
       <h2>Countries</h2>
       {/* America! */}
       <label title={enabledTooltip('usa')}>
@@ -104,6 +109,10 @@ export const Success = ({
           height: 12px;
           border-radius: 6px;
           margin-left: auto;
+        }
+        label + div {
+          display: flex;
+          align-items: center;
         }
       `}</style>
     </>
