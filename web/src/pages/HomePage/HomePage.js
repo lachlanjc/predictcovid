@@ -20,7 +20,8 @@ const HomePage = () => {
       <link rel="stylesheet" href="/fonts.css" key="fonts" />
       <header className="container">
         <h1>
-          How many days each country’s outbreak is&nbsp;behind or ahead of{' '}
+          How many days each country’s outbreak is&nbsp;behind or ahead of
+          {defaultCountry[1].startsWith('U') ? ' the ': ' '}
           <strong>{defaultCountry[1]}</strong>
         </h1>
         <p>
