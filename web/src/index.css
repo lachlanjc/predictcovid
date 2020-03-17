@@ -43,10 +43,6 @@ svg {
   max-height: 100%;
 }
 
-a {
-  color: #07c;
-}
-
 h1, h2, h3,
 h4, h5, h6 {
   font-weight: 800;
@@ -89,13 +85,5 @@ pre {
   body {
     background-color: #1e1e1e;
     color: #fff;
-  }
-
-  input {
-    background-color: #1e1e1e;
-    border-color: #444;
-  }
-  input:focus {
-    border-color: #fff;
   }
 }

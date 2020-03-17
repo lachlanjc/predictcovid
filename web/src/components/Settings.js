@@ -21,6 +21,7 @@ const Settings = ({ children }) => (
       }
       aside select {
         display: block;
+        font-family: ${theme.fonts.system};
         font-size: 1.125rem;
       }
     `}</style>

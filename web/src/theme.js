@@ -23,7 +23,8 @@ const theme = {
   },
   fonts: {
     sans: `'Gotham Rounded SSm A', 'Gotham Rounded SSm B', ${fonts}`,
-    serif: `Sentinel, ${fonts}`
+    serif: `Sentinel, ${fonts}`,
+    system: fonts
   }
 }
 

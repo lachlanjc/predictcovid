@@ -20,6 +20,7 @@ const ShareButton = ({ service, children, ...props }) => (
       a {
         display: inline-block;
         text-decoration: none;
+        padding-left: 0.5rem;
         margin-right: 2rem;
         color: ${theme.colors.red};
       }

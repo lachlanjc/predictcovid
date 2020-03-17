@@ -100,11 +100,24 @@ const HomePage = () => {
         footer p {
           max-width: 64rem;
           padding: 0 1rem;
-          margin: auto;
+          margin: 1rem auto;
         }
         section {
           display: grid;
           grid-gap: 2rem;
+        }
+        footer {
+          margin: 4rem auto 3rem;
+          padding: 2rem 1rem;
+          text-align: center;
+        }
+        header a,
+        footer a {
+          color: ${theme.colors.blue};
+          text-decoration: underline;
+          text-decoration-line: underline;
+          text-decoration-color: initial;
+          text-underline-position: under;
         }
         @media (max-width: 32em) {
           section.swap article {
@@ -112,6 +125,9 @@ const HomePage = () => {
           }
           section.swap aside {
             grid-row: 2;
+          }
+          footer {
+            padding-bottom: 2rem !important;
           }
         }
         @media (min-width: 36em) {
@@ -130,19 +146,6 @@ const HomePage = () => {
           section {
             grid-template-columns: 1fr 4fr;
           }
-        }
-        footer {
-          margin: 4rem auto 3rem;
-          padding: 2rem 1rem;
-          text-align: center;
-        }
-        header a,
-        footer a {
-          color: ${theme.colors.blue};
-          text-decoration: underline;
-          text-decoration-line: underline;
-          text-decoration-color: initial;
-          text-underline-position: under;
         }
       `}</style>
     </>
