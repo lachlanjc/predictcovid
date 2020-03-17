@@ -15,7 +15,7 @@ export const handler = createGraphQLHandler({
     services: makeServices({ services }),
   }),
   cacheControl: {
-    defaultMaxAge: 60 * 5, // 5 minutes
+    defaultMaxAge: 60 * 60, // 60 minutes
   },
   plugins: [
     responseCachePlugin({
