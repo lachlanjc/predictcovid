@@ -10,7 +10,7 @@ const theme = {
     orange: '#fa7921',
     yellow: '#fde74c',
     green: '#9bc53d',
-    blue: '#5bc0eb',
+    blue: '#5a85ea',
 
     chn: '#e95380',
     deu: '#2895b0',
