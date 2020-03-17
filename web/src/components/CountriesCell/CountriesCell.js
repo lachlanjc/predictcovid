@@ -54,7 +54,10 @@ export const Success = ({
 
   return (
     <>
-      <label htmlFor="defaultCountry">Plot against</label>
+      <label htmlFor="defaultCountry">
+        Plot against
+        <span style={{ backgroundColor: theme.colors[defaultCountry] }} />
+      </label>
       <select
         name="defaultCountry"
         value={defaultCountry}
@@ -95,7 +98,7 @@ export const Success = ({
           </label>
         ))}
       <style jsx>{`
-        label span {
+        span {
           display: inline-block;
           width: 12px;
           height: 12px;
