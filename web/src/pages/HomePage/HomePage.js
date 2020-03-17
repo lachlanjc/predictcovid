@@ -80,13 +80,14 @@ const HomePage = () => {
           margin-top: 0;
           margin-bottom: 1rem;
         }
-        h1 ~ p {
+        p {
           margin: 0 0 1rem;
           color: ${theme.colors.muted};
           max-width: 42rem;
+          line-height: 1.75;
         }
         @media (prefers-color-scheme: dark) {
-          h1 ~ p {
+          p {
             color: ${theme.colors.snow};
           }
         }
