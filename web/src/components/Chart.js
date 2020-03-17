@@ -87,11 +87,19 @@ const Chart = ({
       return count
     } // in case of benchmark
 
-    let newDateStr = addDays(new Date(count.date.date), offset)
+    let newDate = addDays(new Date(count.date.date), offset)
+
+    // round date to the nearest day
+    let offsetForRounded = new Date(newDate.getTime() + 12*60*60)
+    let roundedDate = new Date(
+      offsetForRounded.getFullYear(),
+      offsetForRounded.getMonth(),
+      offsetForRounded.getDate()
+    )
 
     // extract the YYYY-DD-MM portion
     count.date.date = new Date(
-      newDateStr.toISOString().substring(0, 10)
+      roundedDate.toISOString().substring(0, 10)
     ).toISOString()
 
     return count
