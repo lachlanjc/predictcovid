@@ -16,15 +16,6 @@ const ShareButton = ({ service, children, ...props }) => (
     {...props}
   >
     {children}
-    <style jsx>{`
-      a {
-        display: inline-block;
-        text-decoration: none;
-        padding-left: 0.5rem;
-        margin-right: 2rem;
-        color: ${theme.colors.red};
-      }
-    `}</style>
   </a>
 )
 
@@ -42,14 +33,15 @@ const Social = () => (
     <style jsx>{`
       section {
         display: flex;
+        justify-content: center;
         margin-bottom: 1rem;
       }
-      @media (min-width: 48em) {
-        section {
-          float: right;
-          margin-right: -2rem;
-          margin-top: 1rem;
-        }
+      section :global(a) {
+        display: inline-block;
+        text-decoration: none;
+        padding-left: 0.5rem;
+        margin-right: 2rem;
+        color: ${theme.colors.red};
       }
     `}</style>
   </section>

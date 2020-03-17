@@ -19,21 +19,19 @@ const HomePage = () => {
     <>
       <link rel="stylesheet" href="/fonts.css" key="fonts" />
       <header className="container">
-        <Social />
-        <h1>COVID-19 Country Tracker</h1>
+        <h1>
+          How many days each country’s outbreak is&nbsp;behind or ahead of{' '}
+          <strong>{defaultCountry[1]}</strong>
+        </h1>
         <p>
           Visualize the 2020 COVID-19 pandemic, country-to-country. This graph
-          shows{' '}
-          <mark>
-            how&nbsp;many days each country’s outbreak is behind or ahead of{' '}
-            <strong>{defaultCountry[1]}</strong>
-          </mark>
-          . (E.g.&nbsp;it&nbsp;offsets each country since it last intersected.) Updated
-          daily.
+          offsets each country since it last intersected with the selected
+          country.
         </p>
         <p>
-          Data from the WHO via{' '}
+          Source: WHO via{' '}
           <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
+          Updated&nbsp;daily.
         </p>
       </header>
       <section className="container swap">
@@ -65,21 +63,22 @@ const HomePage = () => {
         <StatsCell />
       </section>
       <footer className="container">
+        <Social />
         <p>
           By <a href="https://lachlanjc.me">@lachlanjc</a> +{' '}
           <a href="https://zachlatta.com">@zachlatta</a>, 2020.
         </p>
         <p>
-          <a href="https://github.com/lachlanjc/covid19">Open source on GitHub</a>
+          <a href="https://github.com/lachlanjc/covid19">
+            Open source on GitHub
+          </a>
         </p>
       </footer>
       <style jsx>{`
-        header {
-          padding-top: 2rem !important;
-        }
         h1 {
           color: ${theme.colors.red};
-          font-size: 3rem;
+          font-size: 2rem;
+          max-width: 48rem;
           line-height: 1.125;
           letter-spacing: -0.02em;
           margin-top: 0;
@@ -91,33 +90,19 @@ const HomePage = () => {
           max-width: 40rem;
           line-height: 1.75;
         }
-        p mark {
-          border-radius: 0.5em 0.25em;
-          background: linear-gradient(
-            -100deg,
-            rgba(250, 247, 133, 0.5),
-            rgba(250, 247, 133, 0.875) 95%,
-            rgba(250, 247, 133, 0.25)
-          );
-          padding: 0.125em 0.375em;
-          color: inherit;
+        h1 strong {
+          color: #fff;
+          background-color: ${theme.colors.red};
+          padding: 0 0.5rem;
+          border-radius: 0.25rem;
         }
         @media (prefers-color-scheme: dark) {
           p {
             color: ${theme.colors.snow};
           }
-          p mark {
-            color: inherit;
-            background: linear-gradient(
-              -100deg,
-              rgba(250, 247, 133, 0.25),
-              rgba(250, 247, 133, 0.375) 95%,
-              rgba(250, 247, 133, 0.125)
-            );
+          h1 strong {
+            color: ${theme.colors.dark};
           }
-        }
-        p strong {
-          font-family: ${theme.fonts.sans};
         }
         section {
           margin: 0 auto 2rem !important;
@@ -157,7 +142,8 @@ const HomePage = () => {
         }
         @media (min-width: 36em) {
           header {
-            padding-top: 3rem !important;
+            padding-top: 2rem !important;
+            margin-bottom: 0 !important;
           }
           section {
             grid-template-columns: 1fr 2fr;

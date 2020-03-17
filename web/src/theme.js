@@ -3,6 +3,7 @@ const fonts = `system-ui, -apple-system, BlinkMacSystemFont,
 
 const theme = {
   colors: {
+    dark: '#1e1e1e',
     snow: '#eaeaea',
     muted: '#666',
     red: '#e55934',
