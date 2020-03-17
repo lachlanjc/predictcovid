@@ -23,7 +23,8 @@ const HomePage = () => {
         <h1>COVID-19 Country Tracker</h1>
         <p>
           Visualize & track the 2020 COVID-19 pandemic. The curves show how many
-          days behind/ahead each country is in relation to <strong>{defaultCountry[1]}</strong>.
+          days behind/ahead each country is in relation to{' '}
+          <strong>{defaultCountry[1]}</strong>. Updated daily.
         </p>
         <p>
           Data from the WHO via{' '}

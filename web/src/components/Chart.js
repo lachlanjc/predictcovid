@@ -116,7 +116,9 @@ const Chart = ({
   const countryCounts = groupBy(sortedDailyCounts, 'country.iso')
   // Highest date in benchmark country
   //
-  const maxBenchmarkDate = countryCounts[defaultCountry][countryCounts[defaultCountry].length - 1].date.date
+  const maxBenchmarkDate =
+    countryCounts[defaultCountry][countryCounts[defaultCountry].length - 1].date
+      .date
 
   for (const day in days) {
     const daysBehind = daysBetween(new Date(day), new Date(maxBenchmarkDate))
@@ -145,12 +147,27 @@ const Chart = ({
     <ResponsiveContainer height={512} id="primary">
       <LineChart
         data={chartData}
-        margin={{ top: 10, right: 10, bottom: 10, left: 0 }}
+        margin={{ top: 10, right: 10, bottom: 25, left: 15 }}
       >
-        <XAxis dataKey="daysBehind" >
-          <Label value={`Days behind / ahead of ${countryFromKey(defaultCountry, countries)} as of ${new Date(maxBenchmarkDate).toISOString().substring(0,10)} (updated daily)`} position="insideBottom" />
+        <XAxis dataKey="daysBehind">
+          <Label
+            value={`Days vs ${countryFromKey(
+              defaultCountry,
+              countries
+            )} as of ${new Date(maxBenchmarkDate)
+              .toISOString()
+              .substring(0, 10)}`}
+            position="bottom"
+          />
         </XAxis>
-        <YAxis tickFormatter={yAxisFormatter} />
+        <YAxis
+          tickFormatter={yAxisFormatter}
+          label={{
+            value: 'COVID-19 Cases',
+            angle: -90,
+            position: 'insideLeft'
+          }}
+        />
         <Tooltip
           separator=": "
           formatter={(value, key) => [
@@ -171,13 +188,16 @@ const Chart = ({
           />
         ))}
         <style>{`
+          .recharts-label {
+            fill: ${theme.colors.muted};
+          }
           .recharts-default-tooltip {
             border-radius: 0.375rem;
           }
           .recharts-tooltip-label {
+            color: ${theme.colors.muted};
             font-family: ${theme.fonts.sans};
             font-size: 2rem;
-            color: ${theme.colors.muted};
             line-height: 1.5;
           }
           #primary .recharts-tooltip-label:after {
@@ -190,6 +210,9 @@ const Chart = ({
           @media (prefers-color-scheme: dark) {
             .recharts-default-tooltip {
               background-color: #1e1e1e !important;
+            }
+            .recharts-label {
+              fill: ${theme.colors.snow};
             }
             .recharts-tooltip-label {
               color: ${theme.colors.snow};

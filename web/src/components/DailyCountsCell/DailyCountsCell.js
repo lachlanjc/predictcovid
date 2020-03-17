@@ -40,7 +40,7 @@ export const Loading = () => (
         display: flex;
         align-items: center;
         justify-content: center;
-        border: 2px dashed ${theme.colors.muted};
+        border: 1px dashed ${theme.colors.muted};
       }
       @media (min-width: 48em) {
         div {
