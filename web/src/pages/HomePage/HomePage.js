@@ -22,9 +22,14 @@ const HomePage = () => {
         <Social />
         <h1>COVID-19 Country Tracker</h1>
         <p>
-          Visualize & track the 2020 COVID-19 pandemic. The curves show how many
-          days behind/ahead each country is in relation to{' '}
-          <strong>{defaultCountry[1]}</strong>. Updated daily.
+          Visualize the 2020 COVID-19 pandemic, country-to-country. This graph
+          shows{' '}
+          <mark>
+            how&nbsp;many days a country’s pandemic is behind or ahead of{' '}
+            <strong>{defaultCountry[1]}</strong>
+          </mark>
+          . (E.g. it offsets each country since it last intersected.) Updated
+          daily.
         </p>
         <p>
           Data from the WHO via{' '}
@@ -40,7 +45,7 @@ const HomePage = () => {
               checked={log}
               onChange={(e) => setLog(e.target.checked)}
             />
-            <strike>Log</strike>Square root scale
+            Log scale
           </label> */}
           <CountriesCell
             enabledCountries={enabledCountries}
@@ -65,7 +70,7 @@ const HomePage = () => {
           <a href="https://zachlatta.com">@zachlatta</a>, 2020.
         </p>
         <p>
-          <a href="https://github.com/lachlanjc/covid19">Open source!</a>
+          <a href="https://github.com/lachlanjc/covid19">Open source on GitHub</a>
         </p>
       </footer>
       <style jsx>{`
@@ -83,12 +88,32 @@ const HomePage = () => {
         p {
           margin: 0 0 1rem;
           color: ${theme.colors.muted};
-          max-width: 42rem;
+          max-width: 40rem;
           line-height: 1.75;
+        }
+        p mark {
+          border-radius: 0.5em 0.25em;
+          background: linear-gradient(
+            -100deg,
+            rgba(250, 247, 133, 0.5),
+            rgba(250, 247, 133, 0.875) 95%,
+            rgba(250, 247, 133, 0.25)
+          );
+          padding: 0.125em 0.375em;
+          color: inherit;
         }
         @media (prefers-color-scheme: dark) {
           p {
             color: ${theme.colors.snow};
+          }
+          p mark {
+            color: inherit;
+            background: linear-gradient(
+              -100deg,
+              rgba(250, 247, 133, 0.25),
+              rgba(250, 247, 133, 0.375) 95%,
+              rgba(250, 247, 133, 0.125)
+            );
           }
         }
         p strong {
@@ -97,8 +122,7 @@ const HomePage = () => {
         section {
           margin: 0 auto 2rem !important;
         }
-        .container,
-        footer p {
+        .container {
           max-width: 64rem;
           padding: 0 1rem;
           margin: 1rem auto;
@@ -108,9 +132,12 @@ const HomePage = () => {
           grid-gap: 2rem;
         }
         footer {
-          margin: 4rem auto 3rem;
-          padding: 2rem 1rem;
+          margin: 4rem auto 2rem !important;
+          padding: 0 1rem;
           text-align: center;
+        }
+        footer p {
+          margin: 0 auto 0.75rem;
         }
         header a,
         footer a {
@@ -127,9 +154,6 @@ const HomePage = () => {
           section.swap aside {
             grid-row: 2;
           }
-          footer {
-            padding-bottom: 2rem !important;
-          }
         }
         @media (min-width: 36em) {
           header {
@@ -137,6 +161,9 @@ const HomePage = () => {
           }
           section {
             grid-template-columns: 1fr 2fr;
+          }
+          footer {
+            margin-bottom: 3rem !important;
           }
         }
         @media (min-width: 72em) {
@@ -146,6 +173,9 @@ const HomePage = () => {
           }
           section {
             grid-template-columns: 1fr 4fr;
+          }
+          p mark {
+            margin-left: -0.375em;
           }
         }
       `}</style>
