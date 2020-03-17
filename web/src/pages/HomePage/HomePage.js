@@ -155,6 +155,9 @@ const HomePage = () => {
           }
         }
         @media (min-width: 72em) {
+          h1 {
+            font-size: 2.5rem;
+          }
           .container {
             max-width: 72rem;
             padding: 1rem;
