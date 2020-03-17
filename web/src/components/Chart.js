@@ -8,7 +8,7 @@ import {
   Line,
   Label
 } from 'recharts'
-import { orderBy, groupBy, reverse, find } from 'lodash'
+import { orderBy, groupBy, reverse, last, find } from 'lodash'
 import commaNumber from 'comma-number'
 import theme from 'src/theme'
 import { useState, useEffect } from 'react'
@@ -110,23 +110,22 @@ const Chart = ({
     days[count.date.date][`${count.country.iso}TotalDeaths`] = count.totalDeaths
   })
 
-  // Calculate X axis numbers to show how many days ahead / behind a country is
-  let xAxis = []
-
   const countryCounts = groupBy(sortedDailyCounts, 'country.iso')
   // Highest date in benchmark country
-  //
-  const maxBenchmarkDate =
-    countryCounts[defaultCountry][countryCounts[defaultCountry].length - 1].date
-      .date
+  const maxBenchmarkDate = last(countryCounts[defaultCountry]).date.date
 
+  // Calculate X axis numbers to show how many days ahead / behind a country is
   for (const day in days) {
     const daysBehind = daysBetween(new Date(day), new Date(maxBenchmarkDate))
-
     days[day]['daysBehind'] = daysBehind
   }
 
-  const totalDaysInChart = Object.keys(days).length
+  const behindOrAhead =
+    (last(Object.values(days))?.daysBehind || -1) > 0 ? 'ahead of' : 'behind'
+  const updated = new Date(maxBenchmarkDate)
+    .toLocaleDateString()
+    .replace('/2020', '')
+    .replace('2020-', '')
 
   // Prepare chart data
   const [chartData, setChartData] = useState([])
@@ -151,12 +150,7 @@ const Chart = ({
       >
         <XAxis dataKey="daysBehind">
           <Label
-            value={`Days vs ${countryFromKey(
-              defaultCountry,
-              countries
-            )} as of ${new Date(maxBenchmarkDate)
-              .toISOString()
-              .substring(0, 10)}`}
+            value={`Days ${behindOrAhead} ${defaultCountry.toUpperCase()} as of ${updated}`}
             position="bottom"
           />
         </XAxis>
