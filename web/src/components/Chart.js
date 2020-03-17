@@ -5,8 +5,7 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  Line,
-  Label
+  Line
 } from 'recharts'
 import { orderBy, groupBy, reverse, last, find } from 'lodash'
 import commaNumber from 'comma-number'
@@ -78,7 +77,6 @@ const Chart = ({
   // sort dailyCounts for all later operations
   const sortedDailyCounts = orderBy(dailyCounts, 'date.date')
   const offsets = calculateDayOffsets(sortedDailyCounts, defaultCountry)
-  // console.log(offsets)
 
   const offsetDailyCounts = sortedDailyCounts.map((origCount) => {
     // deep clone
@@ -146,14 +144,18 @@ const Chart = ({
     <ResponsiveContainer height={512} id="primary">
       <LineChart
         data={chartData}
-        margin={{ top: 10, right: 10, bottom: 25, left: 15 }}
+        margin={{ top: 0, right: 10, bottom: 25, left: 15 }}
       >
-        <XAxis dataKey="daysBehind">
-          <Label
-            value={`Days ${behindOrAhead} ${defaultCountry.toUpperCase()} as of ${updated}`}
-            position="bottom"
-          />
-        </XAxis>
+        <XAxis
+          dataKey="daysBehind"
+          label={{
+            value: `Days ${behindOrAhead} ${countryFromKey(
+              defaultCountry,
+              countries
+            )} as of ${updated}`,
+            position: 'bottom'
+          }}
+        />
         <YAxis
           tickFormatter={yAxisFormatter}
           label={{

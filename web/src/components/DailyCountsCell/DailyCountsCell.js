@@ -71,7 +71,6 @@ export const Success = ({
   const filteredCounts = filter(dailyCounts, (count) =>
     enabledCountries.includes(count.country.iso)
   )
-  console.log(filteredCounts)
 
   return (
     <Chart
