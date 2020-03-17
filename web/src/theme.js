@@ -12,15 +12,15 @@ const theme = {
     green: '#9bc53d',
     blue: '#5bc0eb',
 
-    chn: '#e55934',
-    deu: '#239b77',
+    chn: '#e95380',
+    deu: '#2895b0',
     esp: '#8e77ee',
     fra: '#c05dea',
     gbr: '#666',
     irn: '#ab8327',
     itl: '#479b23',
     kor: '#e95380',
-    usa: '#5a85ea'
+    usa: '#e55934'
   },
   fonts: {
     sans: `'Gotham Rounded SSm A', 'Gotham Rounded SSm B', ${fonts}`,
