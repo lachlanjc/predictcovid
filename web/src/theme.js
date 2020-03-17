@@ -14,7 +14,7 @@ const theme = {
 
     chn: '#e55934',
     deu: '#239b77',
-    esp: '#e742c6',
+    esp: '#8e77ee',
     fra: '#c05dea',
     gbr: '#666',
     irn: '#ab8327',
