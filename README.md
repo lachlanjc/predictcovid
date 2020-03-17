@@ -12,7 +12,7 @@ charted country-to-country. Made by [@lachlanjc](https://lachlanjc.me) +
 
 Check it out live: [**predictcovid.com**](https://predictcovid.com)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/50ed43f5-9046-4e7e-b7ce-d6f571c704b1/deploy-status)](https://app.netlify.com/sites/predictcovid/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bdfb5b9d-a04d-4f31-88b6-b8fe7c10c14c/deploy-status)](https://app.netlify.com/sites/countrycovid19/deploys)
 
 ## Development
 
