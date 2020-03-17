@@ -186,7 +186,7 @@ const Chart = ({
             type="monotone"
             dataKey={`${iso}TotalCases`}
             stroke={theme.colors[iso]}
-            strokeWidth={defaultCountry[0] === iso ? 5 : 3}
+            strokeWidth={defaultCountry === iso ? 6 : 3}
             dot={false}
             activeDot={{ r: 8 }}
           />
