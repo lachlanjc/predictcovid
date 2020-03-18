@@ -72,7 +72,7 @@ export const Success = ({ countries = [] }) => {
   return (
     <>
       <Settings>
-        <h2>Live stats</h2>
+        <h2>Daily stats</h2>
         <label htmlFor="country">Select country</label>
         <select name="country" value={country} onChange={changeCountry}>
           {countries.map((c) => (
