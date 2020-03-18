@@ -18,7 +18,7 @@ const theme = {
     fra: '#c05dea',
     gbr: '#666',
     irn: '#ab8327',
-    itl: '#7c9221',
+    itl: '#66dd32',
     kor: '#e95380',
     usa: '#3e25a3'
   },
