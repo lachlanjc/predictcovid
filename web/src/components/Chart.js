@@ -90,7 +90,7 @@ const Chart = ({
     let newDate = addDays(new Date(count.date.date), offset)
 
     // round date to the nearest day
-    let offsetForRounded = new Date(newDate.getTime() + 12*60*60)
+    let offsetForRounded = new Date(newDate.getTime() + 12 * 60 * 60)
     let roundedDate = new Date(
       offsetForRounded.getFullYear(),
       offsetForRounded.getMonth(),
@@ -128,7 +128,9 @@ const Chart = ({
 
   const behindOrAhead =
     (last(Object.values(days))?.daysBehind || -1) > 0 ? 'ahead of' : 'behind'
-  const updated = new Date(maxBenchmarkDate)
+  let updated = new Date(maxBenchmarkDate)
+  updated.setDate(updated.getDate() + 1) // JS dates suck
+  updated = updated
     .toLocaleDateString()
     .replace('/2020', '')
     .replace('2020-', '')
