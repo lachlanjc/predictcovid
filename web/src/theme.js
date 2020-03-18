@@ -18,9 +18,9 @@ const theme = {
     fra: '#c05dea',
     gbr: '#666',
     irn: '#ab8327',
-    itl: '#249e3c',
+    itl: '#7c9221',
     kor: '#e95380',
-    usa: '#5bc0eb'
+    usa: '#3e25a3'
   },
   fonts: {
     sans: `'Gotham Rounded SSm A', 'Gotham Rounded SSm B', ${fonts}`,
