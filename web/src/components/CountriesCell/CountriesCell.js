@@ -49,7 +49,11 @@ export const Success = ({
     )
   const enabledTooltip = (iso) =>
     `${iso.toUpperCase()}: ${
-      enabledCountries.includes(iso) ? 'Enabled' : 'Disabled'
+      enabledCountries.includes(iso)
+        ? defaultCountry === iso
+          ? 'Plotting against'
+          : 'Enabled'
+        : 'Not plotting'
     }`
 
   return (
