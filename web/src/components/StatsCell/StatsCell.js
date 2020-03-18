@@ -89,11 +89,11 @@ export const Success = ({ countries = [] }) => {
         </section>
         <section>
           <StatChart data={counts} dataKey="totalCases" color="orange" />
-          <Stat value={stat('totalCases')} label="Total cases" />
+          <Stat value={stat('totalCases')} label="Confirmed cases" />
         </section>
         <section>
           <StatChart data={counts} dataKey="totalDeaths" color="red" />
-          <Stat value={stat('totalDeaths')} label="Total deaths" />
+          <Stat value={stat('totalDeaths')} label="Confirmed deaths" />
         </section>
       </article>
       <style jsx>{`
