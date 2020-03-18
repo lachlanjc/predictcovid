@@ -12,15 +12,15 @@ const theme = {
     green: '#9bc53d',
     blue: '#5a85ea',
 
-    chn: '#e95380',
-    deu: '#2895b0',
-    esp: '#8e77ee',
-    fra: '#c05dea',
-    gbr: '#666',
-    irn: '#ab8327',
-    itl: '#66dd32',
-    kor: '#e95380',
-    usa: '#3e25a3'
+    chn: '#d63336',
+    deu: '#2799f4',
+    esp: '#2ef1d6',
+    fra: '#8100fb',
+    gbr: '#1417f8',
+    irn: '#e6d734',
+    itl: '#7dea32',
+    kor: '#e55934',
+    usa: '#ff00f2'
   },
   fonts: {
     sans: `'Gotham Rounded SSm A', 'Gotham Rounded SSm B', ${fonts}`,
