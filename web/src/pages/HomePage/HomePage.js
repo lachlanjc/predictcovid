@@ -81,7 +81,7 @@ const HomePage = () => {
         h1 {
           color: ${theme.colors.red};
           font-size: 2rem;
-          max-width: 48rem;
+          max-width: 52rem;
           line-height: 1.25;
           letter-spacing: -0.02em;
           margin-top: 0;
@@ -98,6 +98,7 @@ const HomePage = () => {
           background-color: ${theme.colors.red};
           padding: 0 0.5rem;
           border-radius: 0.25rem;
+          white-space: pre;
         }
         @media (prefers-color-scheme: dark) {
           p {
