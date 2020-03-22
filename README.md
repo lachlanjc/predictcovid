@@ -1,8 +1,4 @@
-<img
-  src="https://user-images.githubusercontent.com/5074763/76723248-f8d9f400-671c-11ea-9e07-7951a48cd2b6.png"
-  width="512"
-  alt="Banner with logo"
-/>
+<img src="https://predictcovid.com/card.png" width="512" alt="Banner with chart preview" />
 
 # Interactive COVID-19 Country Tracker
 
