@@ -60,6 +60,10 @@ const HomePage = () => {
           Daily stats for {defaultCountry[1].startsWith('U') ? ' the ' : ' '}
           <strong>{defaultCountry[1]}</strong>
         </h2>
+        <p>
+          All case numbers are cases tested positive, which for some countries
+          (such as the&nbsp;United States) reflects limited testing capacity.
+        </p>
         <StatsCell country={defaultCountry[0]} />
       </article>
       <footer className="container">
