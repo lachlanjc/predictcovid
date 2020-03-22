@@ -60,6 +60,10 @@ export const Success = ({ countries = [], country = 'itl' }) => {
   return (
     <div>
       <section>
+        <StatChart data={counts} dataKey="newCases" color="green" />
+        <Stat value={stat('newCases')} label="New cases" />
+      </section>
+      <section>
         <StatChart data={counts} dataKey="currentlyInfected" color="yellow" />
         <Stat value={stat('currentlyInfected')} label="Currently infected" />
       </section>
@@ -78,8 +82,8 @@ export const Success = ({ countries = [], country = 'itl' }) => {
           margin-top: 2rem;
         }
         @media (min-width: 32em) {
-            grid-template-columns: repeat(3, 1fr);
           div {
+            grid-template-columns: repeat(4, 1fr);
           }
         }
         section {
