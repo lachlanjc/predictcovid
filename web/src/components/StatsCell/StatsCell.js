@@ -12,6 +12,7 @@ export const QUERY = gql`
       iso
       name
       dailyCounts {
+        newCases
         currentlyInfected
         totalCases
         totalDeaths
@@ -44,79 +45,54 @@ const list = {
   IR: 'irn',
   IT: 'itl',
   KR: 'kor',
-  US: 'usa',
+  US: 'usa'
 }
 
-export const Success = ({ countries = [] }) => {
-  const [country, setCountry] = useState('usa')
-  const changeCountry = ({ target: { value } }) => setCountry(value)
-
-  // Automatically set country
-  useEffect(() => {
-    fetch('https://ipinfo.io/country?token=44ae4f170b445a')
-      .then((r) => r.text())
-      .then((t) => trim(t))
-      .then((co) => {
-        // If you’re in a country our database represents
-        if (Object.keys(list).includes(co)) setCountry(list[co])
-      })
-  }, [])
-
+export const Success = ({ countries = [], country = 'itl' }) => {
   // Calculate stats
   const [counts, setCounts] = useState([])
-  const stat = (key) => commaNumber(last(map(orderBy(counts, 'date.date'), key)))
+  const stat = (key) =>
+    commaNumber(last(map(orderBy(counts, 'date.date'), key)))
   useEffect(() => {
     setCounts(find(countries, ['iso', country])?.dailyCounts)
   }, [country])
 
   return (
-    <>
-      <Settings>
-        <h2>Daily stats</h2>
-        <label htmlFor="country">Select country</label>
-        <select name="country" value={country} onChange={changeCountry}>
-          {countries.map((c) => (
-            <option key={c.iso} value={c.iso}>
-              {c.name}
-            </option>
-          ))}
-        </select>
-      </Settings>
-      <article>
-        <section>
-          <StatChart data={counts} dataKey="currentlyInfected" color="green" />
-          <Stat value={stat('currentlyInfected')} label="Currently infected" />
-        </section>
-        <section>
-          <StatChart data={counts} dataKey="totalCases" color="orange" />
-          <Stat value={stat('totalCases')} label="Confirmed cases" />
-        </section>
-        <section>
-          <StatChart data={counts} dataKey="totalDeaths" color="red" />
-          <Stat value={stat('totalDeaths')} label="Confirmed deaths" />
-        </section>
-      </article>
+    <div>
+      <section>
+        <StatChart data={counts} dataKey="currentlyInfected" color="yellow" />
+        <Stat value={stat('currentlyInfected')} label="Currently infected" />
+      </section>
+      <section>
+        <StatChart data={counts} dataKey="totalCases" color="orange" />
+        <Stat value={stat('totalCases')} label="Confirmed cases" />
+      </section>
+      <section>
+        <StatChart data={counts} dataKey="totalDeaths" color="red" />
+        <Stat value={stat('totalDeaths')} label="Confirmed deaths" />
+      </section>
       <style jsx>{`
-        article {
+        div {
           display: grid;
           grid-gap: 1rem;
+          margin-top: 2rem;
         }
         @media (min-width: 32em) {
-          article {
             grid-template-columns: repeat(3, 1fr);
+          div {
           }
         }
-        article section {
+        section {
           position: relative;
           min-height: 8rem;
         }
-        article section :global(.recharts-responsive-container) {
+        section :global(.recharts-responsive-container) {
           position: absolute !important;
           top: 0;
           left: 0;
           right: 0;
         }
       `}</style>
-    </>
+    </div>
   )
 }

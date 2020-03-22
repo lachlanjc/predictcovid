@@ -16,6 +16,16 @@ const Settings = ({ children }) => (
         align-items: center;
         padding-bottom: 0.5rem;
       }
+      aside label:first-child {
+        font-family: ${theme.fonts.sans};
+        font-size: 1.5rem;
+      }
+      aside p {
+        color: ${theme.colors.muted};
+        font-family: ${theme.fonts.serif};
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+      }
       aside input {
         margin-right: 0.5rem;
       }

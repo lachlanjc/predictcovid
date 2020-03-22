@@ -21,7 +21,7 @@ const HomePage = () => {
       <header className="container">
         <h1>
           How many days each country’s outbreak is&nbsp;behind or ahead of
-          {defaultCountry[1].startsWith('U') ? ' the ': ' '}
+          {defaultCountry[1].startsWith('U') ? ' the ' : ' '}
           <strong>{defaultCountry[1]}</strong>
         </h1>
         <p>
@@ -55,9 +55,13 @@ const HomePage = () => {
           />
         </article>
       </section>
-      <section className="container">
-        <StatsCell />
-      </section>
+      <article className="container">
+        <h2>
+          Daily stats for {defaultCountry[1].startsWith('U') ? ' the ' : ' '}
+          <strong>{defaultCountry[1]}</strong>
+        </h2>
+        <StatsCell country={defaultCountry[0]} />
+      </article>
       <footer className="container">
         <Social
           text={`How many days each country’s outbreak is behind or ahead of ${defaultCountry[1]}`}
@@ -93,7 +97,8 @@ const HomePage = () => {
           max-width: 40rem;
           line-height: 1.75;
         }
-        h1 strong {
+        h1 strong,
+        h2 strong {
           color: #fff;
           background-color: ${theme.colors.red};
           padding: 0 0.5rem;
@@ -104,12 +109,10 @@ const HomePage = () => {
           p {
             color: ${theme.colors.snow};
           }
-          h1 strong {
+          h1 strong,
+          h2 strong {
             color: ${theme.colors.dark};
           }
-        }
-        section {
-          margin: 0 auto 2rem !important;
         }
         .container {
           max-width: 64rem;
@@ -119,6 +122,7 @@ const HomePage = () => {
         section {
           display: grid;
           grid-gap: 2rem;
+          margin: 0 auto 2rem !important;
         }
         footer {
           margin: 4rem auto 2rem !important;

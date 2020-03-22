@@ -58,7 +58,7 @@ export const Success = ({
 
   return (
     <>
-      <label htmlFor="defaultCountry">Plot against</label>
+      <label htmlFor="defaultCountry">Primary country</label>
       <div>
         <select
           name="defaultCountry"
@@ -78,7 +78,8 @@ export const Success = ({
           }}
         />
       </div>
-      <h2>Countries</h2>
+      <p>The other countries will plot against this country.</p>
+      <h2>Show countries</h2>
       {/* America! */}
       <label title={enabledTooltip('usa')}>
         <input

@@ -13,10 +13,7 @@ export const QUERY = gql`
     dailyCounts {
       id
       totalCases
-      newCases
       currentlyInfected
-      totalDeaths
-      newDeaths
       country {
         id
         iso
