@@ -48,7 +48,7 @@ const list = {
   US: 'usa'
 }
 
-export const Success = ({ countries = [], country = 'itl' }) => {
+export const Success = ({ countries = [], country = 'usa' }) => {
   // Calculate stats
   const [counts, setCounts] = useState([])
   const stat = (key) =>

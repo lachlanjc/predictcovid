@@ -62,7 +62,7 @@ export const Success = ({
   countries = [],
   // Inherited read-only from hooks
   enabledCountries = [],
-  defaultCountry = 'itl'
+  defaultCountry = 'usa'
   // log = false
 }) => {
   const filteredCounts = filter(dailyCounts, (count) =>

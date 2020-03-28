@@ -8,7 +8,7 @@ import theme from 'src/theme'
 
 const HomePage = () => {
   // const [log, setLog] = useState(false)
-  const [defaultCountry, setDefaultCountry] = useState(['itl', 'Italy'])
+  const [defaultCountry, setDefaultCountry] = useState(['usa', 'United States'])
   const [enabledCountries, setEnabledCountries] = useState([
     'itl',
     'kor',
