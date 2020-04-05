@@ -191,6 +191,7 @@ const Chart = ({
             strokeWidth={defaultCountry === iso ? 6 : 3}
             dot={false}
             activeDot={{ r: 8 }}
+            connectNulls
           />
         ))}
         <style>{`
