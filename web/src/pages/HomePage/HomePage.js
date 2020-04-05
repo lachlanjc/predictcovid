@@ -12,6 +12,8 @@ const HomePage = () => {
   const [enabledCountries, setEnabledCountries] = useState([
     'itl',
     'kor',
+    'gbr',
+    'esp',
     'usa'
   ])
 
