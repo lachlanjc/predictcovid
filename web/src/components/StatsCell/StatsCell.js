@@ -81,7 +81,7 @@ export const Success = ({ countries = [], country = 'usa' }) => {
           grid-gap: 1rem;
           margin-top: 2rem;
         }
-        @media (min-width: 32em) {
+        @media (min-width: 48em) {
           div {
             grid-template-columns: repeat(4, 1fr);
           }
