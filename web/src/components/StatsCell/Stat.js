@@ -14,6 +14,7 @@ const Stat = ({ value, label, unit, ...props }) => (
         display: block;
         font-size: 4rem;
         line-height: 1;
+        letter-spacing: -0.08em;
         margin-bottom: 0.5rem;
       }
       .stat__label {
