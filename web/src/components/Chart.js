@@ -128,7 +128,7 @@ const Chart = ({
 
   const behindOrAhead =
     (last(Object.values(days))?.daysBehind || -1) > 0 ? 'ahead of' : 'behind'
-  let updated = new Date(maxBenchmarkDate)
+  let updated = new Date(last(countryCounts[defaultCountry]).date.createdAt)
   updated.setDate(updated.getDate() + 1) // JS dates suck
   updated = updated
     .toLocaleDateString()
@@ -162,7 +162,7 @@ const Chart = ({
             value: `Days ${behindOrAhead} ${countryFromKey(
               defaultCountry,
               countries
-            )} as of ${updated}`,
+            )} (last updated: ${updated})`,
             position: 'bottom'
           }}
         />
