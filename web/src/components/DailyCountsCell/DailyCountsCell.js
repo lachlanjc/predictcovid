@@ -22,6 +22,7 @@ export const QUERY = gql`
       date {
         id
         date
+        createdAt
       }
     }
   }
