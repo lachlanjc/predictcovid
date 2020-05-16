@@ -169,9 +169,9 @@ const Chart = ({
         <YAxis
           tickFormatter={yAxisFormatter}
           label={{
-            value: 'COVID-19 Cases',
+            value: 'Total COVID-19 Cases',
             angle: -90,
-            position: 'insideLeft'
+            position: 'left'
           }}
         />
         <Tooltip
