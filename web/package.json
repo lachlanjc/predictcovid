@@ -9,7 +9,7 @@
     "@redwoodjs/router": "^0.2.4",
     "@redwoodjs/web": "^0.2.4",
     "comma-number": "^2.0.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
