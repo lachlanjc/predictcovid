@@ -78,7 +78,7 @@ const HomePage = () => {
         <p>
           Source: WHO via{' '}
           <a href="https://www.worldometers.info/coronavirus/">Worldometers</a>.
-          Updated&nbsp;daily.
+          No longer updated.
         </p>
         <p>
           By <a href="https://lachlanjc.me">@lachlanjc</a> +{' '}
