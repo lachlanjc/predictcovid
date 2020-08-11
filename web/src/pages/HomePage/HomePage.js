@@ -81,7 +81,10 @@ const HomePage = () => {
           No longer updated.
         </p>
         <p>
-          By <a href="https://lachlanjc.me">@lachlanjc</a> +{' '}
+          View <a href="https://testing.predictcovid.com">COVID testing by state</a>.
+        </p>
+        <p>
+          By <a href="https://lachlanjc.com">@lachlanjc</a> +{' '}
           <a href="https://zachlatta.com">@zachlatta</a>, 2020.
         </p>
         <p>
