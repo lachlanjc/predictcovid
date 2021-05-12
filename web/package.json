@@ -6,8 +6,8 @@
     "defaults"
   ],
   "dependencies": {
-    "@redwoodjs/router": "^0.2.4",
-    "@redwoodjs/web": "^0.2.4",
+    "@redwoodjs/router": "^0.31.2",
+    "@redwoodjs/web": "^0.31.2",
     "comma-number": "^2.0.1",
     "lodash": "^4.17.15",
     "prop-types": "^15.7.2",

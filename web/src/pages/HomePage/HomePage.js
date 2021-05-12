@@ -30,7 +30,7 @@ const HomePage = () => {
           <strong>{defaultCountry[1]}</strong>
         </h1>
         <p>
-          Visualize the 2020 COVID-19 pandemic, country-to-country. This graph
+          Visualize the 2020/2021 COVID-19 pandemic, country-to-country. This graph
           offsets each country since it last intersected with the selected
           country.
         </p>

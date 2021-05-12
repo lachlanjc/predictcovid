@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@redwoodjs/api": "^0.2.4",
+    "@redwoodjs/api": "^0.31.2",
     "apollo-server-plugin-response-cache": "^0.4.0",
     "cheerio": "^1.0.0-rc.3",
     "isomorphic-unfetch": "^3.0.0"
