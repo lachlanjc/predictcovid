@@ -1,23 +1,25 @@
 // TODO DB lock when scraping is running
 import fetch from 'isomorphic-unfetch'
 import cheerio from 'cheerio'
+import { db } from 'src/lib/db'
 
 // data returns in format: { "2020-02-28": 324, "2020-02-29": 500 }
 const extractDataFromChart = function($, chartId) {
-  let htmlAttempt = $(`div#${chartId} + div > script`).html()
+  /** @type string */
+  const htmlAttempt = $(`div#${chartId}`).parent().parent().parent().parent().find('script').html();
 
-  // sometimes charts have a div wrapping the following script tag, sometimes they don't
-  if (!htmlAttempt) {
-    htmlAttempt = $(`div#${chartId} + script`).html()
-  }
-
-  const hackedChartJSON = htmlAttempt
-    .replace(/^.*?{/, '{')
-    .replace(/\); ?$/, '')
+  const hackedChartJSON = htmlAttempt.split('Highcharts.chart(').find(
+      (chart) => chart.includes(chartId)
+    )
+    .replace(/^.*?\{/, '{')
+    .replace(/\}\);[\s\n]*?$/gi, '}')
     .replace(/([A-z]+):/g, '"$1":')
     .replace(/'/g, '"')
 
   const json = JSON.parse(hackedChartJSON)
+
+  console.log("parsed chart json!")
+
   const xVals = json.xAxis.categories
   const yVals = json.series[0].data
 
@@ -49,9 +51,10 @@ const mergeChart = function(data, toMergeIn, keyForData) {
 
 // total cases, new cases, currently infected, total deaths, new deaths
 const scrapeCases = async function(country) {
-  const html = await fetch(
-    `https://www.worldometers.info/coronavirus/country/${country}/`
-  ).then((r) => r.text())
+  const url = `https://worldometers.info/coronavirus/country/${country}/`
+  const html = await fetch(url).then((r) => r.text())
+
+  console.log('fetched', url)
 
   const $ = cheerio.load(html)
 
@@ -108,8 +111,6 @@ Beginning DailyCount creation for ${day} (or update if it already exists)...`)
         }
       })
 
-      let dailyCount
-
       if (foundCounts.length == 0) {
         console.log('No DailyCount found. Creating one.')
         const {
@@ -119,7 +120,7 @@ Beginning DailyCount creation for ${day} (or update if it already exists)...`)
           totalDeaths,
           newDeaths
         } = data[day]
-        dailyCount = await db.dailyCount.create({
+        await db.dailyCount.create({
           data: {
             country: { connect: { id: country.id } },
             date: { connect: { id: dbDay.id } },
@@ -139,7 +140,7 @@ Beginning DailyCount creation for ${day} (or update if it already exists)...`)
           totalDeaths,
           newDeaths
         } = data[day]
-        dailyCount = await db.dailyCount.update({
+        await db.dailyCount.update({
           where: { id: foundCounts[0].id },
           data: {
             totalCases,
@@ -160,5 +161,11 @@ Beginning DailyCount creation for ${day} (or update if it already exists)...`)
 
 export const handler = (event, context, callback) =>
   dbBS()
-    .then(() => callback(null, { status: 200, body: 'Success!' }))
-    .catch((err) => callback(null, { status: 500, body: 'Error! ' + err }))
+    .then(() => {
+      console.log('success')
+      return callback(null, { status: 200, body: 'Success!' })
+    })
+    .catch((err) => {
+      console.error(err)
+      return callback(null, { status: 500, body: 'Error! ' + err })
+    })
