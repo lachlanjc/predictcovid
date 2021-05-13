@@ -2,6 +2,19 @@ import { find, orderBy, filter, concat } from 'lodash'
 import Spinner from 'respin'
 import theme from 'src/theme'
 
+const variables = {}
+
+// https://redwoodjs.com/docs/cells#beforequery
+export const beforeQuery = () => {
+  return {
+    // never change query with new variables
+    variables,
+    fetchPolicy: 'cache-and-network',
+    // countries don't change mid-session
+    nextFetchPolicy: 'no-cache'
+  }
+}
+
 export const QUERY = gql`
   query {
     countries {
