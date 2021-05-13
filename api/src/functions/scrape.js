@@ -1,6 +1,6 @@
 // TODO DB lock when scraping is running
 import fetch from 'isomorphic-unfetch'
-import cheerio, { html } from 'cheerio'
+import cheerio from 'cheerio'
 import { db } from '../lib/db'
 
 // data returns in format: { "2020-02-28": 324, "2020-02-29": 500 }
