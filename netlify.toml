@@ -1,5 +1,5 @@
 [build]
-  command = "cp redwood-hack/api-dbInstance.js node_modules/@redwoodjs/api/dist/dbInstance.js && yarn rw db up --no-db-client && yarn rw build"
+  command = "yarn rw prisma migrate dev && yarn rw build"
   publish = "web/dist"
   functions = "api/dist/functions"
 
