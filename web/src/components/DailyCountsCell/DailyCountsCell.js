@@ -3,6 +3,8 @@ import Spinner from 'respin'
 import theme from 'src/theme'
 import { filter } from 'lodash'
 
+const DEFAULT_COUNTRY = process.env.REDWOOD_ENV_DEFAULT_COUNTRY
+
 export const QUERY = gql`
   query {
     countries {
@@ -63,7 +65,7 @@ export const Success = ({
   countries = [],
   // Inherited read-only from hooks
   enabledCountries = [],
-  defaultCountry = 'usa'
+  defaultCountry = DEFAULT_COUNTRY
   // log = false
 }) => {
   const filteredCounts = filter(dailyCounts, (count) =>

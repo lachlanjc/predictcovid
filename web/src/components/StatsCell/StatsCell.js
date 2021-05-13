@@ -6,6 +6,8 @@ import StatChart from 'src/components/StatsCell/StatChart'
 import commaNumber from 'comma-number'
 import { map, find, last, trim, orderBy } from 'lodash'
 
+const DEFAULT_COUNTRY = process.env.REDWOOD_ENV_DEFAULT_COUNTRY
+
 export const QUERY = gql`
   query {
     countries {
@@ -48,7 +50,7 @@ const list = {
   US: 'usa'
 }
 
-export const Success = ({ countries = [], country = 'usa' }) => {
+export const Success = ({ countries = [], country = DEFAULT_COUNTRY }) => {
   // Calculate stats
   const [counts, setCounts] = useState([])
   const stat = (key) =>

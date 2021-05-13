@@ -49,6 +49,8 @@ export const Success = ({
   defaultCountry,
   setDefaultCountry
 }) => {
+  const orderedCountries = orderBy(countries, 'name');
+  const [defaultIso, defaultName] = defaultCountry
   const changeDefault = ({ target: { value } }) => {
     setDefaultCountry([value, find(countries, ['iso', value]).name])
     // Enable on graph if it’s not alreadythere
@@ -63,7 +65,7 @@ export const Success = ({
   const enabledTooltip = (iso) =>
     `${iso.toUpperCase()}: ${
       enabledCountries.includes(iso)
-        ? defaultCountry === iso
+        ? defaultIso === iso
           ? 'Plotting against'
           : 'Enabled'
         : 'Not plotting'
@@ -75,10 +77,10 @@ export const Success = ({
       <div>
         <select
           name="defaultCountry"
-          value={defaultCountry}
+          value={defaultIso}
           onChange={changeDefault}
         >
-          {countries.map((c) => (
+          {orderedCountries.map((c) => (
             <option key={c.iso} value={c.iso}>
               {c.name}
             </option>
@@ -86,7 +88,7 @@ export const Success = ({
         </select>
         <span
           style={{
-            backgroundColor: theme.colors[defaultCountry],
+            backgroundColor: theme.colors[defaultIso],
             marginLeft: 'auto'
           }}
         />
@@ -94,19 +96,19 @@ export const Success = ({
       <p>The other countries will plot against this country.</p>
       <h2>Show countries</h2>
       {/* America! */}
-      <label title={enabledTooltip('usa')}>
+      <label title={enabledTooltip(defaultIso)}>
         <input
           type="checkbox"
-          id="usa"
+          id={defaultIso}
           onChange={toggleEnabled}
-          checked={enabledCountries.includes('usa')}
-          disabled={defaultCountry === 'usa'}
+          checked={enabledCountries.includes(defaultIso)}
+          disabled
         />
-        United States
-        <span style={{ backgroundColor: theme.colors.usa }} />
+        {defaultName}
+        <span style={{ backgroundColor: theme.colors[defaultIso] }} />
       </label>
-      {orderBy(countries, 'name')
-        .filter((c) => c.iso !== 'usa')
+      {orderedCountries
+        .filter((c) => c.iso !== defaultIso)
         .map(({ iso, name }) => (
           <label key={iso} title={enabledTooltip(iso)}>
             <input
@@ -114,7 +116,6 @@ export const Success = ({
               id={iso}
               onChange={toggleEnabled}
               checked={enabledCountries.includes(iso)}
-              disabled={defaultCountry === iso}
             />
             {name}
             <span style={{ backgroundColor: theme.colors[iso] }} />
