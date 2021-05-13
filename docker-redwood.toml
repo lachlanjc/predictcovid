@@ -1,0 +1,9 @@
+[web]
+  host = '0.0.0.0'
+  port = 8910
+  apiProxyPath = "http://localhost:8911"
+[api]
+  host = '0.0.0.0'
+  port = 8911
+[browser]
+  open = false

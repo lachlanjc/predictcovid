@@ -77,6 +77,12 @@ curl http://localhost:8911/scrape
 
 You should be good to go now! Open [localhost:8910](http://localhost:8910) & enjoy development.
 
+### Docker
+
+You should be able to start the app in docker with `docker-compose up --build`. If you want to run it in the background: `docker-compose up -d --build`. If you want to run a shell in a container: `docker-compose run --rm web sh` or `docker-compose run --rm api sh`
+
+Database should persist, so you can run `docker-compose down` and restart whenever you'd like. If you want to delete the database/volume, run `docker-compose down -v`.
+
 ---
 
 _Thanks to [dDara](https://thenounproject.com/dDara/) for [the icon](https://thenounproject.com/dDara/collection/coronavirus/)._
