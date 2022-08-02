@@ -1,21 +1,21 @@
-<img src="https://predictcovid.com/card.png" width="512" alt="Banner with chart preview" />
+<img src="https://predictcovid.netlify.app/card.png" width="512" alt="Banner with chart preview" />
 
 # Interactive COVID-19 Country Tracker
 
 Built with [RedwoodJS](https://redwoodjs.com), an interactive visualization of the COVID-19 pandemic,
-charted country-to-country. Made by [@lachlanjc](https://lachlanjc.me) +
+charted country-to-country. Made by [@lachlanjc](https://lachlanjc.com) +
 [@zachlatta](https://zachlatta.com) (while in isolation, of course).
 
-Check it out live: [**predictcovid.com**](https://predictcovid.com)
+Check it out live: [**predictcovid.netlify.app**](https://predictcovid.netlify.app/)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/bdfb5b9d-a04d-4f31-88b6-b8fe7c10c14c/deploy-status)](https://app.netlify.com/sites/countrycovid19/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bdfb5b9d-a04d-4f31-88b6-b8fe7c10c14c/deploy-status)](https://app.netlify.com/sites/predictcovid/deploys)
 
 ## Development
 
 ### Clone
 
 ```terminal
-git clone https://github.com/lachlanjc/covid19
+git clone https://github.com/lachlanjc/predictcovid
 cd covid19
 ```
 
