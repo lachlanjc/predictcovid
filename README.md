@@ -27,6 +27,27 @@ We use Yarn as our package manager. To get the dependencies installed, just do t
 yarn
 ```
 
+### Initialize Database
+
+We’re using [Prisma2](https://github.com/prisma/prisma2), a modern DB toolkit to query, migrate and model your database.
+
+Prisma2 is [ready for production](https://isprisma2ready.com).
+
+To create a development database:
+
+1. Change `./api/prisma/schema.prisma` to use `"sqlite"`:
+
+```prisma
+datasource DS {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+```
+
+2. Then run `yarn redwood prisma migrate dev`
+
+This will read the schema definition in `api/prisma/schema.prisma` and generate a SQLite database in `api/prisma/dev.db`
+
 ### Fire it up
 
 ```terminal
@@ -36,31 +57,14 @@ yarn redwood dev
 Your browser should open automatically to `http://localhost:8910` to see the web app. Lambda functions run on
 `http://localhost:8911` and are also proxied to `http://localhost:8910/api/functions/*`.
 
-But we don’t have any data, or even a database!
-
-### Database
-
-We’re using [Prisma2](https://github.com/prisma/prisma2), a modern DB toolkit to query, migrate and model your database.
-
-Prisma2 is [not ready for production](https://isprisma2ready.com) at the moment.
-
-To create a development database:
-
-```terminal
-yarn redwood db up
-```
-
-This will read the schema definition in `api/prisma/schema.prisma` and generate a SQLite database in `api/prisma/dev.db`
-
-(If you’ve made changes to the schema run `yarn redwood db save` to generate a migration, and `yarn redwood db up`
-to apply the migration/generate a new ORM client.)
+But we don’t have any data!
 
 ### Downloading data
 
 First, seed the database:
 
 ```terminal
-yarn redwood db seed
+yarn redwood prisma db seed
 ```
 
 Now, run the scraper. In one terminal, start the server (`yarn rw dev`), and in another, make this request:
@@ -73,8 +77,14 @@ curl http://localhost:8911/scrape
 
 You should be good to go now! Open [localhost:8910](http://localhost:8910) & enjoy development.
 
-***
+### Docker
 
-*Thanks to [dDara](https://thenounproject.com/dDara/) for [the icon](https://thenounproject.com/dDara/collection/coronavirus/).*
+You should be able to start the app in docker with `docker-compose up --build`. If you want to run it in the background: `docker-compose up -d --build`. If you want to run a shell in a container: `docker-compose run --rm web sh` or `docker-compose run --rm api sh`
+
+Database should persist, so you can run `docker-compose down` and restart whenever you'd like. If you want to delete the database/volume, run `docker-compose down -v`.
+
+---
+
+_Thanks to [dDara](https://thenounproject.com/dDara/) for [the icon](https://thenounproject.com/dDara/collection/coronavirus/)._
 
 MIT License

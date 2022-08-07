@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    ports:
+      - 8910:8910
+    command: yarn rw dev web
+    restart: always
+    environment:
+      REDWOOD_ENV_DEFAULT_COUNTRY: usa
+      REDWOOD_ENV_DEFAULT_COUNTRY_NAME: United States
+    volumes:
+      # keep web directory synced in container (hot reloads should work)
+      - ./web:/app/web
+
+  api:
+    build: .
+    ports:
+      - 8911:8911
+    command: yarn rw dev api
+    # use the entrypoint to migrate/seed db
+    entrypoint: ['./docker-entrypoint.sh']
+    restart: always
+    volumes:
+      # keeps database after container stops
+      - db:/app/api/prisma
+
+volumes:
+  db:

@@ -1,10 +1,3 @@
-/* eslint-disable no-console */
-const { PrismaClient } = require('@prisma/client')
-const dotenv = require('dotenv')
-
-dotenv.config()
-const db = new PrismaClient()
-
 const countries = [
   {
     iso: 'itl',
@@ -50,24 +43,22 @@ const countries = [
     iso: 'gbr',
     worldometersSlug: 'uk',
     name: 'United Kingdom',
-  }
+  },
+  {
+    iso: 'cad',
+    worldometersSlug: 'canada',
+    name: 'Canada',
+  },
+  {
+    iso: 'ind',
+    worldometersSlug: 'india',
+    name: 'India',
+  },
+  {
+    iso: 'bra',
+    worldometersSlug: 'brazil',
+    name: 'Brazil',
+  },
 ]
 
-async function asyncForEach(array, callback) {
-  for (let index = 0; index < array.length; index++) {
-    await callback(array[index], index, array)
-  }
-}
-
-async function main() {
-  await asyncForEach(countries, async (country) => {
-    await db.country.create({ data: country })
-  })
-}
-
-
-main()
-  .catch((e) => console.error(e))
-  .finally(async () => {
-    await db.disconnect()
-  })
+module.exports = countries

@@ -1,36 +1,38 @@
 datasource DS {
   provider = "mysql"
-  url = env("DATABASE_URL")
+  url      = env("DATABASE_URL")
 }
 
 generator photonjs {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
 model Day {
-  id Int @id @default(autoincrement())
-  date DateTime @unique
-  createdAt DateTime @default(now())
-  counts DailyCount[]
+  id        Int          @id @default(autoincrement())
+  date      DateTime     @unique
+  createdAt DateTime     @default(now())
+  counts    DailyCount[]
 }
 
 model Country {
-  id Int @id @default(autoincrement())
-  iso String @unique
-  worldometersSlug String @unique
-  name String
-  createdAt DateTime @default(now())
-  dailyCounts DailyCount[]
+  id               Int          @id @default(autoincrement())
+  iso              String       @unique
+  worldometersSlug String       @unique
+  name             String
+  createdAt        DateTime     @default(now())
+  dailyCounts      DailyCount[]
 }
 
 model DailyCount {
-  id Int @id @default(autoincrement())
-  date Day
-  country Country
-  totalCases Int
-  newCases Int
+  id                Int     @id @default(autoincrement())
+  date              Day     @relation(fields: [dayId], references: [id])
+  country           Country @relation(fields: [countryId], references: [id])
+  totalCases        Int
+  newCases          Int
   currentlyInfected Int
-  totalDeaths Int
-  newDeaths Int
+  totalDeaths       Int
+  newDeaths         Int
+  dayId             Int
+  countryId         Int
 }

@@ -17,10 +17,13 @@ const theme = {
     esp: '#2ef1d6',
     fra: '#8100fb',
     gbr: '#1417f8',
-    irn: '#e6d734',
+    irn: '#ff8f00',
     itl: '#7dea32',
     kor: '#e55934',
-    usa: '#ff00f2'
+    usa: '#ff00f2',
+    cad: '#ff0000',
+    ind: '#83ff1c',
+    bra: '#FFFF00'
   },
   fonts: {
     sans: `'Gotham Rounded SSm A', 'Gotham Rounded SSm B', ${fonts}`,

@@ -1,19 +1,24 @@
 {
   "private": true,
-  "workspaces": {
-    "packages": [
-      "api",
-      "web"
-    ]
-  },
+  "workspaces": [
+    "api",
+    "web"
+  ],
   "devDependencies": {
-    "@redwoodjs/core": "^0.2.4"
+    "@redwoodjs/core": "^0.31.2"
   },
   "eslintConfig": {
-    "extends": "@redwoodjs/eslint-config"
+    "extends": "@redwoodjs/eslint-config",
+    "root": true
   },
   "engines": {
-    "node": ">=12",
+    "node": ">=14",
     "yarn": ">=1.15"
+  },
+  "resolutions": {
+    "react": "16.13.0",
+    "react-dom": "16.13.0",
+    "@babel/core": "7.13.15",
+    "@babel/preset-env": "7.13.15"
   }
 }

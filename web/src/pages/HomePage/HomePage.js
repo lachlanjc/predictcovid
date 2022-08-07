@@ -6,9 +6,12 @@ import DailyCountsCell from 'src/components/DailyCountsCell'
 import StatsCell from 'src/components/StatsCell'
 import theme from 'src/theme'
 
+const DEFAULT_COUNTRY = process.env.REDWOOD_ENV_DEFAULT_COUNTRY
+const DEFAULT_COUNTRY_NAME = process.env.REDWOOD_ENV_DEFAULT_COUNTRY_NAME
+
 const HomePage = () => {
   // const [log, setLog] = useState(false)
-  const [defaultCountry, setDefaultCountry] = useState(['usa', 'United States'])
+  const [defaultCountry, setDefaultCountry] = useState([DEFAULT_COUNTRY, DEFAULT_COUNTRY_NAME])
   const [enabledCountries, setEnabledCountries] = useState([
     'fra',
     'deu',
@@ -17,7 +20,8 @@ const HomePage = () => {
     'kor',
     'gbr',
     'esp',
-    'usa'
+    'usa',
+    ...[DEFAULT_COUNTRY]
   ])
 
   return (
@@ -30,7 +34,7 @@ const HomePage = () => {
           <strong>{defaultCountry[1]}</strong>
         </h1>
         <p>
-          Visualize the 2020 COVID-19 pandemic, country-to-country. This graph
+          Visualize the 2020/2021 COVID-19 pandemic, country-to-country. This graph
           offsets each country since it last intersected with the selected
           country.
         </p>
@@ -49,7 +53,7 @@ const HomePage = () => {
           <CountriesCell
             enabledCountries={enabledCountries}
             setEnabledCountries={setEnabledCountries}
-            defaultCountry={defaultCountry[0]}
+            defaultCountry={defaultCountry}
             setDefaultCountry={setDefaultCountry}
           />
         </Settings>

@@ -118,7 +118,7 @@ const Chart = ({
 
   const countryCounts = groupBy(sortedDailyCounts, 'country.iso')
   // Highest date in benchmark country
-  const maxBenchmarkDate = last(countryCounts[defaultCountry]).date.date
+  const maxBenchmarkDate = last(countryCounts[defaultCountry])?.date.date
 
   // Calculate X axis numbers to show how many days ahead / behind a country is
   for (const day in days) {
@@ -128,7 +128,7 @@ const Chart = ({
 
   const behindOrAhead =
     (last(Object.values(days))?.daysBehind || -1) > 0 ? 'ahead of' : 'behind'
-  let updated = new Date(last(countryCounts[defaultCountry]).date.createdAt)
+  let updated = new Date(last(countryCounts[defaultCountry])?.date.createdAt)
   updated.setDate(updated.getDate() + 1) // JS dates suck
   updated = updated
     .toLocaleDateString()

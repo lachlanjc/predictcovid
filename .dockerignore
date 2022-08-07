@@ -1,5 +1,4 @@
 .DS_Store
-.env
 .netlify
 dev.db*
 dist
@@ -9,3 +8,9 @@ yarn-error.log
 
 # types files keep changing
 .redwood
+
+.vscode
+docker-compose.yml
+Dockerfile
+api/prisma/dev.db*
+.git*
